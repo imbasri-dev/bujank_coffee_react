@@ -1,0 +1,433 @@
+/* import font
+font-family: 'Poppins',
+sans-serif;
+font-family: 'Rubik',
+sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Rubik:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* reset format css */
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik',
+        sans-serif;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.left>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.left {
+    width: 50%;
+    height: 100%;
+}
+
+.right {
+    width: 50%;
+    height: 100%;
+}
+
+/* navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 55px;
+}
+
+.navbar>a {
+    text-decoration: none;
+    background: #FFBA33;
+    border-radius: 50px;
+    width: 150px;
+    height: 45px;
+}
+
+.navbar span {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #6A4029;
+
+}
+
+.nav__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav__logo>p {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #0B132A;
+    margin-left: 15px;
+}
+
+form {
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    margin-bottom: 90px;
+}
+
+.inputbar h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 41px;
+    color: #6A4029;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.forgot_password {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-decoration-line: underline;
+    margin-top: 20px;
+    color: #6A4029;
+    cursor: pointer;
+    text-align: left;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+}
+
+.input>label {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #4F5665;
+    text-align: left;
+}
+
+.input>input {
+    height: 75px;
+    margin-top: 13px;
+    border: 1px solid #4F5665;
+    border-radius: 20px;
+    padding: 30px;
+    font-size: 20px;
+}
+
+.btn {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    border: none;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 26px;
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.google {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 20px rgba(196, 196, 196, 0.67);
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.google>span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 26px;
+    color: #000000;
+}
+
+.sign {
+    background: #FFBA33;
+    box-shadow: 0px 6px 20px rgba(255, 186, 51, 0.4);
+    border-radius: 20px;
+    margin: 47px 0 25px 0;
+    transition: all 0.3s;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    color: #6A4029;
+}
+
+.google span>img {
+    margin-right: 14px;
+    cursor: pointer;
+}
+
+
+
+.ready span {
+    display: flex;
+    width: 136px;
+    border-bottom: 2px solid #C4C4C4;
+}
+
+.ready>p {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 0 14px;
+    color: #9F9F9F;
+}
+
+
+.card_banner {
+    margin: 0 auto;
+    background: #FFFFFF;
+    border: 1px solid #DDD;
+    border-radius: 10px;
+    width: 80%;
+    height: 15%;
+    position: absolute;
+    bottom: -8%;
+    right: 0;
+    left: 0;
+    padding: 2% 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-wrap: break-word;
+}
+
+.card_banner div {
+    display: flex;
+    flex-direction: column;
+}
+
+.card_banner a {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 25px;
+    color: #6A4029;
+    width: 250px;
+    height: 60px;
+    background: #FFBA33;
+    border-radius: 10px;
+}
+
+.card_banner div h2 {
+    width: 380px;
+    text-align: left;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.25em;
+    line-height: 45px;
+    color: #0B132A;
+}
+
+.card_banner div p {
+    padding: 5px;
+    font-size: 1em;
+    text-align: left;
+}
+
+.btn:hover,
+.foot_left_icon img:hover,
+.foot_right_link ul li:hover {
+    transform: scale(1.1);
+    transition: all 0.4s;
+}
+
+
+@media only screen and (max-device-width: 400px) {
+    .card_banner {
+        display: none;
+    }
+}
+
+@media only screen and (max-device-width: 768px) {
+    .form_bar {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .navbar {
+        padding: 40px 0 20px 0;
+    }
+
+    .navbar span p,
+    .forgot_password,
+    .inputbar h1 {
+        color: #fff;
+    }
+
+    .nav__logo>p {
+        font-size: 1.5em;
+    }
+
+    .navbar span img {
+        opacity: 1;
+        background-color: #F8F8F8;
+        display: none;
+    }
+
+    .inputbar h1 {
+        font-size: 3em;
+        letter-spacing: 10px;
+        text-shadow: 10px 5px 10px #F8F8F8;
+    }
+
+    .navbar {
+        justify-content: space-around;
+        padding: 20px auto;
+    }
+
+    .left>img {
+        display: none;
+    }
+
+    .input #email {
+        font-size: 0.85em;
+    }
+
+    .google>span {
+        font-size: 0.90em;
+    }
+
+    .right {
+        width: 100%;
+        background-image: url('../assets/image/main/img_signup.png');
+        opacity: 0.8;
+        background-size: cover;
+    }
+
+    .input>input {
+        font-size: 1em;
+    }
+
+    .inputbar {
+        width: 80%;
+    }
+
+    .input>label {
+        color: #fff;
+    }
+
+    .card_banner {
+        height: 25%;
+        width: 85%;
+        border: 1px solid rgba(196, 196, 196, 0.67);
+        left: 0;
+        right: 0;
+        bottom: -90px;
+    }
+
+    .card_banner div {
+        width: auto;
+    }
+
+    .card_banner a {
+        padding: 2%;
+        text-align: center;
+        font-size: 1em;
+        word-wrap: break-word;
+        width: 25%;
+    }
+
+    .card_banner div h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (max-device-width: 992px) {
+    .left {
+        display: none;
+    }
+
+    .input>label {
+        color: #fff;
+    }
+
+    form {
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    .card_banner div h2 {
+        width: auto;
+        font-size: 1.75em;
+    }
+
+    .navbar span p,
+    .forgot_password,
+    .inputbar h1 {
+        color: #fff;
+    }
+
+    .nav__logo>p {
+        font-size: 1.5em;
+    }
+
+    .navbar span img {
+        opacity: 1;
+        background-color: #F8F8F8;
+        display: none;
+    }
+
+    .inputbar h1 {
+        font-size: 3em;
+        letter-spacing: 10px;
+        text-shadow: 10px 5px 10px #F8F8F8;
+    }
+
+    .right {
+        width: 100%;
+        background-image: url('../assets/image/main/img_signup.png');
+        opacity: 0.8;
+        background-size: cover;
+    }
+
+    .inputbar {
+        width: 90%;
+    }
+
+    .card_banner {
+        padding: 3%;
+        width: 90%;
+        height: 20%;
+        bottom: -12%;
+        left: 0;
+        right: 0;
+    }
+}
