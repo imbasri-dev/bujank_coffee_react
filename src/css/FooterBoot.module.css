@@ -1,0 +1,34 @@
+.footers {
+    padding-top: 100px;
+}
+
+.foot_link span a {
+    text-decoration: none;
+    color: #4F5665;
+}
+
+.foot_link span:hover,
+hover:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.footer_icon {
+    cursor: pointer;
+}
+
+.footer_icon:hover {
+    transform: scale(1.1);
+}
+
+.max_width {
+    padding-top: 50px;
+}
+
+.footTop {
+    background-color: #F8F8F8;
+}
+
+footer {
+    padding-top: 100px;
+}

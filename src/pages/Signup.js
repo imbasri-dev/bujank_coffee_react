@@ -1,15 +1,14 @@
 import React, { Component, Fragment } from "react";
-import styles from "../css/Login.module.css";
+import styles from "../css/Signup.module.css";
 // import Footer from "../components/Footer";
 import Footer from "../components/FooterBootstrap";
-
 // import components
 // import assets image
 import img_signup from "../assets/image/main/img_signup.png";
 import icon_coffee from "../assets/image/main/logo_coffee.png";
 import icon_google from "../assets/image/main/icon_googlesignup.png";
 
-class Login extends Component {
+class Signup extends Component {
    render() {
       return (
          <Fragment>
@@ -25,14 +24,14 @@ class Login extends Component {
                      </span>
                      <a
                         className={`${styles.btn} ${styles.login}`}
-                        href="../pages/Login.js"
+                        href="../view/signup.html"
                      >
-                        <span>Sign Up</span>
+                        <span>Login</span>
                      </a>
                   </div>
                   <form method="post" className={styles.form_bar}>
                      <section className={styles.inputbar}>
-                        <h1>Login</h1>
+                        <h1>Sign up</h1>
                         <div className={styles.input}>
                            <label for="email">Email Address :</label>
                            <input
@@ -53,7 +52,17 @@ class Login extends Component {
                               required
                            />
                         </div>
-                        <a className={styles.forgot_password}>
+                        <div className={styles.input}>
+                           <label for="phone">Phone Number :</label>
+                           <input
+                              type="tel"
+                              name="phone"
+                              id="phone"
+                              placeholder="Enter your phone number"
+                              required
+                           />
+                        </div>
+                        <a href="/" className={styles.forgot_password}>
                            Forgot password?
                         </a>
                         <button
@@ -63,7 +72,7 @@ class Login extends Component {
                            Login
                         </button>
                         <a
-                           href="#"
+                           href="/"
                            className={`${styles.btn} ${styles.google}`}
                            type="submit"
                         >
@@ -80,16 +89,16 @@ class Login extends Component {
                      <h2>Get your member card now!</h2>
                      <p>Let's join with our member and enjoy the deals.</p>
                   </div>
-                  <a className={styles["btn"]} href="#">
+                  <a href="/" className={styles["btn"]}>
                      Create Now
                   </a>
                </section>
             </main>
-            {/* footer */}
             <Footer />
+            {/* footer */}
          </Fragment>
       );
    }
 }
 
-export default Login;
+export default Signup;

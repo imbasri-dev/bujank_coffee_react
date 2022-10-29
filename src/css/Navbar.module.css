@@ -1,0 +1,37 @@
+.left-nav span {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #0B132A;
+}
+
+.center-nav a {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #4F5665;
+    transition: all 0.3s;
+}
+
+.center-nav a:hover {
+    transform: scale(1.1);
+    color: #9e684b;
+    border-bottom: 1px solid #6A4029;
+    ;
+}
+
+.img_userprofile {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.burger {
+    text-decoration: none;
+    color: #0B132A;
+    font-weight: 700;
+}

@@ -13,6 +13,17 @@ footer {
     text-align: left;
 }
 
+.foot_left_icon img {
+    height: 65px;
+    width: 65px;
+}
+
+
+.foot_left>img {
+    width: 40px;
+    height: 40px;
+}
+
 .foot_left_desc span {
     display: flex;
     align-items: center;
@@ -109,94 +120,6 @@ footer {
         width: 90%;
     }
 
-    .navbar {
-        padding: 40px 0 20px 0;
-    }
-
-    .navbar span p,
-    .forgot_password,
-    .inputbar h1 {
-        color: #fff;
-    }
-
-    .nav__logo>p {
-        font-size: 1.5em;
-    }
-
-    .navbar span img {
-        opacity: 1;
-        background-color: #F8F8F8;
-        display: none;
-    }
-
-    .inputbar h1 {
-        font-size: 3em;
-        letter-spacing: 10px;
-        text-shadow: 10px 5px 10px #F8F8F8;
-    }
-
-    .navbar {
-        justify-content: space-around;
-        padding: 20px auto;
-    }
-
-    .left>img {
-        display: none;
-    }
-
-    .input #email {
-        font-size: 0.85em;
-    }
-
-    .google>span {
-        font-size: 0.90em;
-    }
-
-    .right {
-        width: 100%;
-        background-image: url('../assets/image/main/img_signup.png');
-        opacity: 0.8;
-        background-size: cover;
-    }
-
-
-    .input>input {
-        font-size: 1em;
-    }
-
-    .inputbar {
-        width: 80%;
-    }
-
-    .input>label {
-        color: #fff;
-    }
-
-    .card_banner {
-        height: 25%;
-        width: 85%;
-        border: 1px solid rgba(196, 196, 196, 0.67);
-        left: 0;
-        right: 0;
-        bottom: -90px;
-    }
-
-    .card_banner div {
-        width: auto;
-    }
-
-    .card_banner a {
-        padding: 2%;
-        text-align: center;
-        font-size: 1em;
-        word-wrap: break-word;
-        width: 25%;
-    }
-
-    .card_banner div h2 {
-        font-size: 1.5em;
-    }
-
     footer {
         max-width: 1440px;
         flex-direction: column-reverse;
@@ -229,53 +152,6 @@ footer {
     form {
         margin: 0 auto;
         width: 80%;
-    }
-
-    .card_banner div h2 {
-        width: auto;
-        font-size: 1.75em;
-    }
-
-    .navbar span p,
-    .forgot_password,
-    .inputbar h1 {
-        color: #fff;
-    }
-
-    .nav__logo>p {
-        font-size: 1.5em;
-    }
-
-    .navbar span img {
-        opacity: 1;
-        background-color: #F8F8F8;
-        display: none;
-    }
-
-    .inputbar h1 {
-        font-size: 3em;
-        letter-spacing: 10px;
-        text-shadow: 10px 5px 10px #F8F8F8;
-    }
-
-    .right {
-        width: 100%;
-        background-image: url('../assets/image/main/img_signup.png');
-        opacity: 0.8;
-        background-size: cover;
-    }
-
-    .inputbar {
-        width: 90%;
-    }
-
-    .card_banner {
-        padding: 3%;
-        width: 90%;
-        height: 20%;
-        bottom: -11%;
-        left: 0;
-        right: 0;
     }
 
     footer {
