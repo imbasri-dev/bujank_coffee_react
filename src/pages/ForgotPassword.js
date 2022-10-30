@@ -2,7 +2,9 @@ import React from "react";
 import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import styles from "../css/ForgotPassword.module.css";
 import Footer from "../components/FooterBootstrap";
+import title from "../helpers/title";
 function ForgotPassword() {
+   title("Forgot Password");
    return (
       <>
          <main

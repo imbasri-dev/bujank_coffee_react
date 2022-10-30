@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "../css/ProductDetail.module.css";
-import "bootstrap/dist/js/bootstrap.min.js";
+import "/node_modules/bootstrap/dist/js/bootstrap.min.js";
 import prod_cold_brew from "../assets/image/product/img_coldbrew.png";
 import Navbar from "../components/Navbar";
 import Footer from "../components/FooterBootstrap";
-
+import title from "../helpers/title";
 function ProductDetail() {
+   title("Product-detail");
    return (
       <>
          <Navbar />

@@ -1,16 +1,18 @@
 import React, { Component, Fragment } from "react";
 import styles from "../css/Login.module.css";
-// import Footer from "../components/Footer";
-import Footer from "../components/FooterBootstrap";
-
+import { Link } from "react-router-dom";
 // import components
+import Footer from "../components/FooterBootstrap";
+import title from "../helpers/title";
 // import assets image
 import img_signup from "../assets/image/main/img_signup.png";
 import icon_coffee from "../assets/image/main/logo_coffee.png";
 import icon_google from "../assets/image/main/icon_googlesignup.png";
-
+// import helpers
+import withNavigate from "../helpers/withNavigate";
 class Login extends Component {
    render() {
+      title("Login");
       return (
          <Fragment>
             <main className={styles.container}>
@@ -30,7 +32,7 @@ class Login extends Component {
                         <span>Sign Up</span>
                      </a>
                   </div>
-                  <form method="post" className={styles.form_bar}>
+                  <form className={styles.form_bar}>
                      <section className={styles.inputbar}>
                         <h1>Login</h1>
                         <div className={styles.input}>
@@ -53,25 +55,22 @@ class Login extends Component {
                               required
                            />
                         </div>
-                        <a className={styles.forgot_password}>
+                        <Link to="/forgot" className={styles.forgot_password}>
                            Forgot password?
-                        </a>
+                        </Link>
                         <button
+                           onClick={() => this.props.navigate("/product")}
                            className={`${styles.btn} ${styles.sign}`}
                            type="submit"
                         >
                            Login
                         </button>
-                        <a
-                           href="#"
-                           className={`${styles.btn} ${styles.google}`}
-                           type="submit"
-                        >
+                        <Link className={`${styles.btn} ${styles.google}`}>
                            <span>
                               <img src={icon_google} alt="icon_google" />
                               Sign up with Google
                            </span>
-                        </a>
+                        </Link>
                      </section>
                   </form>
                </section>
@@ -80,9 +79,9 @@ class Login extends Component {
                      <h2>Get your member card now!</h2>
                      <p>Let's join with our member and enjoy the deals.</p>
                   </div>
-                  <a className={styles["btn"]} href="#">
+                  <Link to="/signup" className={styles["btn"]}>
                      Create Now
-                  </a>
+                  </Link>
                </section>
             </main>
             {/* footer */}
@@ -92,4 +91,4 @@ class Login extends Component {
    }
 }
 
-export default Login;
+export default withNavigate(Login);

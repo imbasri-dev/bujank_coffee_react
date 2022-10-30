@@ -1,142 +1,88 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import title from "../helpers/title";
 // import css
 import styles from "../css/Product.module.css";
-
-// import navbar dan footer
+// import components
 import Navbar from "../components/Navbar";
 import Footer from "../components/FooterBootstrap";
 import CardProduct from "../components/ListProduct";
-
-// import image
-// import promo_one from "../asset/icon_promo-1.png";
-// import promo_two from "../asset/icon_promo-2.png";
-// import promo_four from "../asset/icon_promo-4.png";
+import Promo from "../components/CardPromo";
+// axios
+import axios from "axios";
 
 class Product extends Component {
+   state = {
+      products: [],
+   };
+   componentDidMount() {
+      axios
+         .get(`http://localhost:5000/api/product/`)
+         .then((res) => {
+            const products = res.data.data;
+            this.setState({ products });
+            console.log(products);
+         })
+         .catch((err) => console.log(err));
+   }
    render() {
+      title("Product");
+
       return (
          <>
             {/* <!-- Start Navbar --> */}
-            <main classNameName="container-fluid bg-white">
-               <Navbar />
-            </main>
+            <Navbar />
+
             {/* <!-- End Navbar --> */}
-            <section
-               className={`${styles.borderTop} container-fluid d-flex flex-row flex-wrap`}
-            >
-               <aside
-                  className={`${styles["product-left"]} d-flex flex-column align-items-center `}
+            <main>
+               <section
+                  className={`${styles.borderTop} container-fluid d-flex justify-content-around flex-row row flex-wrap`}
                >
-                  <span className={`${styles["title-promo"]} text-center mt-4`}>
-                     Promo Today
-                  </span>
-                  <span
-                     className={`${styles["desc-promo"]} text-center mt-3 px-5`}
-                  >
-                     Coupons will be updated every weeks. Check them out!
-                  </span>
-                  <div className={`${styles["promo-one"]} d-flex mt-5 py-2 `}>
-                     <a href="/">
-                        {/* <img src={promo_one} alt="pic-promo" /> */}
-                     </a>
-                     <div className={`${styles["description-promo"]} py-2`}>
-                        <span>HAPPY MOTHER'S DAY!</span>
-                        <p>Get one of our favorite menu for free!</p>
-                     </div>
+                  {/* promo bar */}
+                  <div class="col-4">
+                     <Promo />
                   </div>
-                  <div
-                     className={`${styles["promo-two"]} d-flex mt-3 mx-3 py-2 bg-warning`}
-                  >
-                     <a href="">
-                        {/* <img src={promo_two} alt="pic-promo" /> */}
-                     </a>
-                     <div className={`${styles["description-promo"]} py-2`}>
-                        <span>
-                           Get a cup of coffee for free on sunday morning
-                        </span>
-                        <p>Only at 7 to 9 AM</p>
-                     </div>
-                  </div>
-                  <div className={`${styles["promo-one"]} d-flex mt-3 py-2 `}>
-                     <a href="">
-                        {/* <img src={promo_one} alt="pic-promo" /> */}
-                     </a>
-                     <div className={`${styles["description-promo"]} py-2`}>
-                        <span>HAPPY MOTHER'S DAY!</span>
-                        <p>Get one of our favorite menu for free!</p>
-                     </div>
-                  </div>
-                  <div className={`${styles["promo-four"]} d-flex mt-3 mx-3 `}>
-                     <a href="">
-                        {/* <img src={promo_four} alt="pic-promo" /> */}
-                     </a>
-                     <div className={`${styles["description-promo"]} py-3`}>
-                        <span>HAPPY HALLOWEEN!</span>
-                        <p>
-                           Do you like chicken wings? Get 1 free only if you buy
-                           pinky promise
-                        </p>
-                     </div>
-                  </div>
-                  <button
-                     className={`${styles["apply-coupon"]} mt-5 rounded-5`}
-                  >
-                     Apply Coupon
-                  </button>
-                  <div className={`${styles["noted"]} d-flex flex-column my-5`}>
-                     <span className="py-3">Terms and Condition</span>
-                     <p>1. You can only apply 1 coupon per day</p>
-                     <p>2. It only for dine in</p>
-                     <p>3. Buy 1 get 1 only for new user</p>
-                     <p>4. Should make member card to apply coupon</p>
-                  </div>
-               </aside>
-
-               <aside
-                  className={`${styles["product-right"]} d-flex flex-column py-4`}
-               >
-                  <div
-                     className={`${styles["nav-product"]} d-flex flex-row justify-content-around`}
-                  >
-                     <span>
-                        <Link to="">Favorite & Promo</Link>
-                     </span>
-                     <span>
-                        <Link to="">Coffee</Link>
-                     </span>
-                     <span>
-                        <Link to="">Non Coffee</Link>
-                     </span>
-                     <span>
-                        <Link to="">Foods</Link>
-                     </span>
-                     <span>
-                        <Link to="">Add-on</Link>
-                     </span>
-                  </div>
-
-                  <section className="container-fluid text-center ps-5 ms-4">
-                     <div
-                        className={`row ${styles["list-content"]} justify-content-start ${styles["gap-Row"]} ${styles["position-settings"]}`}
+                  <div class="col-7  ">
+                     {/* Product */}
+                     <aside
+                        className={`${styles["product-right"]} d-flex flex-column py-4`}
                      >
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                     </div>
-                  </section>
-               </aside>
-            </section>
+                        <div
+                           className={`${styles["nav-product"]} d-flex flex-row justify-content-between`}
+                        >
+                           <span>
+                              <Link to="">Favorite & Promo</Link>
+                           </span>
+                           <span>
+                              <Link to="">Coffee</Link>
+                           </span>
+                           <span>
+                              <Link to="">Non Coffee</Link>
+                           </span>
+                           <span>
+                              <Link to="">Foods</Link>
+                           </span>
+                           <span>
+                              <Link to="">Add-on</Link>
+                           </span>
+                        </div>
+
+                        <section className=" text-center row d-flex justify-content-between flex-wrap">
+                           <div
+                              className={` ${styles["list-content"]} d-flex flex-wrap col-12`}
+                           >
+                              <CardProduct />
+                              <CardProduct />
+                              <CardProduct />
+                              <CardProduct />
+                              <CardProduct />
+                              <CardProduct />
+                           </div>
+                        </section>
+                     </aside>
+                  </div>
+               </section>
+            </main>
             <Footer />
          </>
       );

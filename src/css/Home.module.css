@@ -19,6 +19,7 @@ body {
     line-height: 19px;
     color: var(--abu);
     border: 2px solid transparent;
+    cursor: pointer;
 }
 
 .nav__link .active {
@@ -208,6 +209,7 @@ input.nosubmit {
 }
 
 .card_favorite {
+    overflow-x: scroll;
     margin-top: 90px;
     display: flex;
     justify-content: space-around;

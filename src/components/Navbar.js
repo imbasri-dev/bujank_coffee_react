@@ -12,7 +12,7 @@ function Navbar() {
    return (
       <>
          <nav className="nav d-flex justify-content-between align-items-center mx-auto px-4">
-            <div className={`${styles["left-nav"]} d-flex py-4`}>
+            <Link to="/" className={`${styles["left-nav"]} d-flex py-4`}>
                <img
                   src={icon_coffee}
                   alt=""
@@ -21,9 +21,9 @@ function Navbar() {
                   height="30"
                />
                <span className="mt-1">Bujank Coffee</span>
-            </div>
+            </Link>
             <div
-               className={`${styles["center-nav"]} d-sm-none d-none  d-sm-none d-md-none d-lg-flex flex-row  `}
+               className={`${styles["center-nav"]} d-sm-none d-none d-sm-none d-md-none d-lg-flex flex-row`}
             >
                <Link to="/" className="nav-link">
                   Home
@@ -31,14 +31,14 @@ function Navbar() {
                <Link to="/product" className="nav-link">
                   Product
                </Link>
-               <Link to="#" className="nav-link">
+               <Link to="/product-detail" className="nav-link">
                   Your Cart
                </Link>
-               <Link to="#" className="nav-link">
+               <Link to="/history" className="nav-link">
                   History
                </Link>
             </div>
-            <div className={`${styles["right-nav"]} d-flex `}>
+            <div className={`${styles["right-nav"]} d-flex`}>
                <Link
                   to="#"
                   className="nav-link d-none d-sm-block d-md-none d-lg-block d-sm-none"
@@ -51,7 +51,7 @@ function Navbar() {
                >
                   <img src={icon_chat} alt="" widht="30" height="30" />
                </Link>
-               <Link to="#" className="nav-link">
+               <Link to="/profile" className="nav-link">
                   <img
                      className={styles.img_userprofile}
                      src={icon_profile}

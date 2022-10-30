@@ -30,14 +30,16 @@ import icon_check from "../assets/image/main/icon_nochecklist.png";
 import hamburger from "../assets/image/main/icon_hamburger.png";
 
 import { Link } from "react-router-dom";
-
+import title from "../helpers/title";
 // assets
 class Home extends Component {
    render() {
+      title("Bujank Coffee");
+
       return (
          <>
             <header>
-               <nav className="navbar bg-light p-3">
+               <nav className="navbar bg-light ">
                   <section className="container-fluid d-flex justify-content-between align-items-center">
                      <Link to="/" className="navbar-brand">
                         <img
@@ -50,7 +52,7 @@ class Home extends Component {
                         <span className="fs-6 fw-bold">Bujank Coffee</span>
                      </Link>
                      <div
-                        className={`${styles.nav__link} navbar-nav d-flex flex-row flex-lg-row d-none d-lg-flex`}
+                        className={`${styles.nav__link} navbar-nav d-flex flex-row flex-lg-row d-none d-lg-flex  mx-auto`}
                      >
                         <Link
                            to="/"
@@ -62,10 +64,12 @@ class Home extends Component {
                         <Link to="/product" className="nav-link p-2 m-3">
                            Product
                         </Link>
-                        <Link to="/cart" className="nav-link p-2 m-3">
+                        <Link to="/product-detail" className="nav-link p-2 m-3">
                            Your Cart
                         </Link>
-                        <a className="nav-link p-2 m-3">History</a>
+                        <Link to="./history" className="nav-link p-2 m-3">
+                           History
+                        </Link>
                      </div>
                      <div
                         className={`${styles.nav__utility} d-none d-sm-none d-md-none d-md-block d-lg-block`}
@@ -192,7 +196,9 @@ class Home extends Component {
                   </section>
                </div>
                {/* <!-- favorite --> */}
-               <section className="container-fluid favorite text-center mx-auto w-100">
+               <section
+                  className={`${styles.favorite} container-fluid  text-center mx-auto w-100 `}
+               >
                   <div className="container">
                      <h2 className="pt-5">Here is People’s Favorite</h2>
                      <p>
@@ -204,7 +210,7 @@ class Home extends Component {
                      >
                         {/* <!-- card 1 --> */}
                         <article
-                           className={`col-12 col-lg-3 col-md-8 ${styles.card__menus} `}
+                           className={`col-12 col-lg-3 col-md-8 d-sm-none d-md-block ${styles.card__menus} overflow-scroll `}
                         >
                            <img src={img_hazzel_coffee} alt="hazzel_latte" />
                            <p className="fs-5 fw-bold">Hazelnut Latte</p>
@@ -238,7 +244,7 @@ class Home extends Component {
                         </article>
                         {/* <!-- card 2 --> */}
                         <article
-                           className={`${styles.card__menus} col-12 col-lg-3 col-md-8`}
+                           className={`col-12 col-lg-3 col-md-8 d-sm-none d-md-block ${styles.card__menus} overflow-scroll`}
                         >
                            <img src={img_pinkypromise} alt="hazzel_latte" />
                            <p className="fs-5 fw-bold">Pinky Promise</p>
@@ -524,7 +530,7 @@ class Home extends Component {
                   </section>
                </section>
             </main>
-            <Footer style={{ paddingTop: "150px" }} />
+            <Footer />
          </>
       );
    }

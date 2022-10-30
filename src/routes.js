@@ -8,8 +8,11 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Navbar from "./components/Navbar";
 import ProductDetail from "./pages/ProductDetail";
 import Product from "./pages/Product";
-import CardHistory from "./components/CardHistory";
+// import CardHistory from "./components/CardHistory";
 import History from "./pages/History";
+import Payment from "./pages/Payment";
+import Profile from "./pages/Profile";
+import Promo from "./components/CardPromo";
 // import Error from "./pages/Error";
 
 const router = createBrowserRouter([
@@ -17,13 +20,13 @@ const router = createBrowserRouter([
    { path: "/", element: <Home /> },
    { path: "/login", element: <Login /> },
    { path: "/signup", element: <Signup /> },
-   // { path: "/profile", element: <Profile /> },
+   { path: "/profile", element: <Profile /> },
    { path: "/forgot", element: <ForgotPassword /> },
-   { path: "/header", element: <Navbar /> },
    { path: "/product-detail", element: <ProductDetail /> },
    { path: "/product", element: <Product /> },
-   { path: "/card", element: <CardHistory /> },
+   { path: "/card", element: <Promo /> },
    { path: "/history", element: <History /> },
+   { path: "/payment", element: <Payment /> },
 
    // { path: "/product", element: <product /> },
    // { path: "/home", element: <home /> },

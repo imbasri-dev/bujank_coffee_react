@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "../css/History.module.css";
 import Card from "../components/CardHistory";
-// import Header from "../components/HeaderHome";
+import Navbar from "../components/Navbar";
 import Footer from "../components/FooterBootstrap";
 // import TabTitle from "../utils/WebDinamis";
 
@@ -10,6 +10,7 @@ export default class History extends Component {
       //   TabTitle("User History");
       return (
          <>
+            <Navbar />
             {/* <Header /> */}
             <main className={`${styles["hist-bck"]} py-5`}>
                <section>

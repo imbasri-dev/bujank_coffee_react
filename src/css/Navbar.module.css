@@ -7,6 +7,14 @@
     color: #0B132A;
 }
 
+.left-nav {
+    text-decoration: none;
+}
+
+.nav {
+    text-decoration: none;
+}
+
 .center-nav a {
     font-family: 'Rubik';
     font-style: normal;
@@ -15,13 +23,14 @@
     line-height: 19px;
     color: #4F5665;
     transition: all 0.3s;
+    cursor: pointer;
 }
 
 .center-nav a:hover {
     transform: scale(1.1);
     color: #9e684b;
     border-bottom: 1px solid #6A4029;
-    ;
+    cursor: pointer;
 }
 
 .img_userprofile {
