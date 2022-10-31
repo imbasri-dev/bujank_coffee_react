@@ -86,6 +86,23 @@ form {
     align-items: center;
 }
 
+.withToggle {
+    position: relative;
+}
+
+.toggles {
+    right: 25px;
+    bottom: 15px;
+    position: absolute;
+    font-size: 30px;
+    transition: all 0.3s;
+}
+
+.toggles:hover {
+    transform: scale(1.075);
+    color: #ff3333;
+}
+
 .inputbar {
     display: flex;
     flex-direction: column;
