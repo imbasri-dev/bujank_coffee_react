@@ -26,7 +26,6 @@
 
 .now {
     font-weight: 400;
-
     font-size: 20px;
     line-height: 30px;
     margin-right: 10%;
@@ -172,7 +171,6 @@
 /* size and checkout */
 .choose_checkout {
     margin-top: 67px;
-    padding-left: 50px;
     width: 100%;
     height: 75%;
     position: relative;
@@ -182,6 +180,7 @@
 /* size */
 .size {
     height: 50%;
+    width: 30%;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
@@ -241,4 +240,72 @@
 
 .button_checkout i {
     font-size: 16px;
+}
+
+
+@media only screen and (max-width: 992px) {
+
+    /*Small smartphones [325px -> 425px]*/
+    .checkout {
+        width: 100%;
+        margin: 25px auto;
+    }
+
+    .price {
+        font-size: 24px;
+    }
+
+    .size {
+        width: 100%;
+        padding: 26px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    /*Small smartphones [325px -> 425px]*/
+    .content_left_bar {
+        width: 100%;
+    }
+
+    .size {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    /*Small smartphones [325px -> 425px]*/
+    .checkout {
+        width: 100%;
+        margin-top: 25px;
+    }
+
+    .size {
+        padding: 20px;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 512px) {
+
+    /*Small smartphones [325px -> 425px]*/
+    .checkout {
+        width: 100%;
+        margin: 25px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .content_left_bar {
+        width: 100%;
+    }
+
+    .size {
+        width: 100%;
+        padding: 20px;
+    }
 }

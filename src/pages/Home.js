@@ -210,7 +210,7 @@ class Home extends Component {
                      >
                         {/* <!-- card 1 --> */}
                         <article
-                           className={`col-12 col-lg-3 col-md-8 d-sm-none d-md-block ${styles.card__menus} overflow-scroll `}
+                           className={`col-12 col-lg-3 col-md-8 d-sm-none d-md-block ${styles.card__menus}  `}
                         >
                            <img src={img_hazzel_coffee} alt="hazzel_latte" />
                            <p className="fs-5 fw-bold">Hazelnut Latte</p>
@@ -244,7 +244,7 @@ class Home extends Component {
                         </article>
                         {/* <!-- card 2 --> */}
                         <article
-                           className={`col-12 col-lg-3 col-md-8 d-sm-none d-md-block ${styles.card__menus} overflow-scroll`}
+                           className={`col-12 col-lg-3 col-md-8 d-sm-none d-md-block ${styles.card__menus} `}
                         >
                            <img src={img_pinkypromise} alt="hazzel_latte" />
                            <p className="fs-5 fw-bold">Pinky Promise</p>

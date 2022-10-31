@@ -13,7 +13,9 @@ function ProductDetail() {
          <main className="container ">
             <div className="position-relative row d-flex justify-content-center align-content-center flex-column flex-md-row">
                {/* breadcrumb */}
-               <section className="col-6 col-sm-12 col-lg-6 col-md-6 text-center">
+               <section
+                  className={`${styles.content_left_bar} col-6 col-sm-12 col-lg-6 col-md-6 text-center`}
+               >
                   <nav className="text-start">
                      <section className="text-start align-items-start fs-5">
                         Favorite & Promo <i class="bi bi-chevron-right"></i>
@@ -72,7 +74,7 @@ function ProductDetail() {
                   </section>
                </section>
                <article
-                  className={`${styles.content_right} col-6 col-sm-12 col-md-6 col-lg-6 text-center d-flex flex-column justify-content-between mx-auto`}
+                  className={`${styles.content_right} col-12 col-sm-12 col-md-6 col-lg-6 text-center d-flex flex-column justify-content-between mx-auto`}
                >
                   <h2 className={styles.title}>COLD BREW</h2>
                   <p className="text-start">
@@ -108,16 +110,18 @@ function ProductDetail() {
                   <span className={styles.staff}>Ask a Staff</span>
                </article>
                <section
-                  className={`${styles.choose_checkout} row justify-content-between flex-md-column flex-lg-row`}
+                  className={`${styles.choose_checkout} row justify-content-between flex-sm-column flex-md-column flex-md-row flex-lg-row`}
                >
-                  <section className={`${styles.size} col-4 text-center ms-0`}>
+                  <section
+                     className={`${styles.size} col-12 text-center mx-auto col-sm-12 `}
+                  >
                      <h4>Choose a size</h4>
                      <button className=" rounded-circle">R</button>
                      <button className=" rounded-circle">L</button>
                      <button className=" rounded-circle">XL</button>
                   </section>
                   <section
-                     className={`${styles.checkout} col-6 d-flex justify-content-between align-content-center`}
+                     className={`${styles.checkout} col-12 col-sm-12 d-flex justify-content-between align-content-center`}
                   >
                      <div className="d-flex justify-content-center align-items-center">
                         <img

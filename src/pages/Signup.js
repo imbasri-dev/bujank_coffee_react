@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from "react";
 import styles from "../css/Signup.module.css";
 // import Footer from "../components/Footer";
-import Footer from "../components/FooterBootstrap";
 // import components
+import Footer from "../components/FooterBootstrap";
 // import assets image
 import img_signup from "../assets/image/main/img_signup.png";
 import icon_coffee from "../assets/image/main/logo_coffee.png";
 import icon_google from "../assets/image/main/icon_googlesignup.png";
 import title from "../helpers/title";
-
+import { Link } from "react-router-dom";
 class Signup extends Component {
    render() {
       title("Signup");
@@ -24,12 +24,12 @@ class Signup extends Component {
                         <img src={icon_coffee} alt="icon_coffee" />
                         <p>Bujank Coffee</p>
                      </span>
-                     <a
+                     <Link
+                        to="/login"
                         className={`${styles.btn} ${styles.login}`}
-                        href="../view/signup.html"
                      >
                         <span>Login</span>
-                     </a>
+                     </Link>
                   </div>
                   <form method="post" className={styles.form_bar}>
                      <section className={styles.inputbar}>
@@ -64,9 +64,7 @@ class Signup extends Component {
                               required
                            />
                         </div>
-                        <a href="/" className={styles.forgot_password}>
-                           Forgot password?
-                        </a>
+
                         <button
                            className={`${styles.btn} ${styles.sign}`}
                            type="submit"

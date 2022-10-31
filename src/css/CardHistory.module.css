@@ -9,7 +9,7 @@
 
 .imagine {
     border-radius: 2em;
-    width: 3em;
+    width: 4em;
 }
 
 .title {
@@ -34,4 +34,42 @@
     font-weight: 400;
     font-size: 0.8em;
     color: #6a4029;
+}
+
+
+
+.del_close {
+    top: -10px;
+    left: 15px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.del_close p {
+    text-align: center;
+}
+
+.delete {
+    border-radius: 50%;
+    background-color: #6A4029;
+    color: #FFFFFF;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #FFBA33;
+    color: #6A4029;
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+
 }

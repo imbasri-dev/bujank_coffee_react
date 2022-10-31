@@ -5,7 +5,6 @@ import Signup from "./pages/Signup";
 // import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import ForgotPassword from "./pages/ForgotPassword";
-import Navbar from "./components/Navbar";
 import ProductDetail from "./pages/ProductDetail";
 import Product from "./pages/Product";
 // import CardHistory from "./components/CardHistory";
@@ -27,9 +26,6 @@ const router = createBrowserRouter([
    { path: "/card", element: <Promo /> },
    { path: "/history", element: <History /> },
    { path: "/payment", element: <Payment /> },
-
-   // { path: "/product", element: <product /> },
-   // { path: "/home", element: <home /> },
 ]);
 
 export default router;

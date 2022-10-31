@@ -12,7 +12,7 @@
 
 }
 
-.title1 {
+.title-name {
     font-family: "Rubik";
     font-style: normal;
     font-weight: 700;
@@ -22,7 +22,7 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
 }
 
-.title2 {
+.h2 {
     font-family: "Rubik";
     font-style: normal;
     font-weight: 400;

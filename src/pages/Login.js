@@ -25,12 +25,12 @@ class Login extends Component {
                         <img src={icon_coffee} alt="icon_coffee" />
                         <p>Bujank Coffee</p>
                      </span>
-                     <a
+                     <Link
+                        to="/signup"
                         className={`${styles.btn} ${styles.login}`}
-                        href="../pages/Login.js"
                      >
                         <span>Sign Up</span>
-                     </a>
+                     </Link>
                   </div>
                   <form className={styles.form_bar}>
                      <section className={styles.inputbar}>

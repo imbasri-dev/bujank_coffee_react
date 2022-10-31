@@ -3,10 +3,10 @@ import styles from "../css/History.module.css";
 import Card from "../components/CardHistory";
 import Navbar from "../components/Navbar";
 import Footer from "../components/FooterBootstrap";
-// import TabTitle from "../utils/WebDinamis";
-
+import title from "../helpers/title";
 export default class History extends Component {
    render() {
+      title("History");
       //   TabTitle("User History");
       return (
          <>
@@ -14,10 +14,10 @@ export default class History extends Component {
             {/* <Header /> */}
             <main className={`${styles["hist-bck"]} py-5`}>
                <section>
-                  <div className={`${styles["title1"]}`}>
+                  <div className={`${styles["title-name"]}`}>
                      Let’s see what you have bought!
                   </div>
-                  <div className={`${styles["title2"]}`}>
+                  <div className={`${styles["h2"]}`}>
                      Long press to delete item
                   </div>
                </section>

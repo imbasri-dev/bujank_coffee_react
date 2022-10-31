@@ -209,7 +209,6 @@ input.nosubmit {
 }
 
 .card_favorite {
-    overflow-x: scroll;
     margin-top: 90px;
     display: flex;
     justify-content: space-around;

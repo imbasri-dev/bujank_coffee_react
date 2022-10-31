@@ -31,7 +31,7 @@ function Navbar() {
                <Link to="/product" className="nav-link">
                   Product
                </Link>
-               <Link to="/product-detail" className="nav-link">
+               <Link to="/payment" className="nav-link">
                   Your Cart
                </Link>
                <Link to="/history" className="nav-link">

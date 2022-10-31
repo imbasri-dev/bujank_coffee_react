@@ -16,14 +16,14 @@ function ForgotPassword() {
             </section>
             <form
                action="POST"
-               className="d-flex justify-content-center flex-row my-5 "
+               className="d-flex justify-content-center flex-row my-5 row"
             >
                <input
-                  className="form-control me-4 ps-5"
+                  className="form-control me-4 ps-5 col-6"
                   type="text"
                   placeholder="Enter your email address to get link "
                />
-               <button>Send</button>
+               <button className="col-6">Send</button>
             </form>
             <p className="fs-4 my-3 p-2">
                Click here if you didn’t receive any link <br /> in 2 minutes

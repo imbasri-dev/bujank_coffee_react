@@ -40,3 +40,33 @@
     font-weight: bold;
     color: #6A4029
 }
+
+@media only screen and (max-width: 768px) {
+    .list-product-image {
+        width: 120px;
+        height: 120px;
+        left: 25%;
+        right: 25%;
+    }
+
+    .content-product {
+        width: 40%;
+        margin: 50px auto;
+
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .list-product-image {
+        width: 120px;
+        height: 120px;
+        left: 40%;
+        right: 40%;
+    }
+
+    .content-product {
+        width: 100%;
+        margin: 50px auto;
+
+    }
+}
