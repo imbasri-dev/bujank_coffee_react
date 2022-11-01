@@ -355,6 +355,14 @@ nav .nav__utility a .img_userprofile {
     text-shadow: 0px 6px 9px rgba(255, 255, 255, 0.21);
 }
 
+.btn_utility p {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: #6A4029;
+    padding: 0;
+}
+
 .btn_utility {
     border: none;
     border-radius: 20px;
