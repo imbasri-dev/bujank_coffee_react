@@ -238,8 +238,13 @@
     background: #FFBA33;
 }
 
-.button_checkout i {
+.button_checkout {
     font-size: 16px;
+    color: #6A4029;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 

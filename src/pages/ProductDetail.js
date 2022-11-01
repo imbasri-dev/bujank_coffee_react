@@ -5,6 +5,7 @@ import prod_cold_brew from "../assets/image/product/img_coldbrew.png";
 import Navbar from "../components/Navbar";
 import Footer from "../components/FooterBootstrap";
 import title from "../helpers/title";
+import { Link } from "react-router-dom";
 function ProductDetail() {
    title("Product-detail");
    return (
@@ -105,7 +106,7 @@ function ProductDetail() {
                      className={`${styles.cart} mb-3 mb-sm-5 mb-md-5 mb-lg-3`}
                   >
                      Add to Cart
-                  </span>{" "}
+                  </span>
                   <br />
                   <span className={styles.staff}>Ask a Staff</span>
                </article>
@@ -137,9 +138,9 @@ function ProductDetail() {
                      </div>
                      <div className="d-flex justify-content-center align-items-center">
                         <span className="fs-4 fw-bold">Checkout</span>
-                        <button className={styles.button_checkout}>
+                        <Link to="/payment" className={styles.button_checkout}>
                            <i class="bi bi-arrow-right"></i>
-                        </button>
+                        </Link>
                      </div>
                   </section>
                </section>
