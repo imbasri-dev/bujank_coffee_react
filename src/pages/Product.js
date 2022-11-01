@@ -116,30 +116,33 @@ class Product extends Component {
    onFavorite = () => {
       axios
          .get(this.state.favorite)
-         .then((res) => this.setState({ products: res.data.result.data }));
+         .then((res) => this.setState({ products: res.data.result.data }))
+         .catch((err) => console.log(err));
    };
    onFood = () => {
       axios
          .get(this.state.food)
-         .then((res) => this.setState({ products: res.data.result.data }));
+         .then((res) => this.setState({ products: res.data.result.data }))
+         .catch((err) => console.log(err));
    };
    onCoffee = () => {
       axios
          .get(this.state.coffee)
-         .then((res) => this.setState({ products: res.data.result.data }));
+         .then((res) => this.setState({ products: res.data.result.data }))
+         .catch((err) => console.log(err));
    };
    OnNonCoffee = () => {
       axios
          .get(this.state.non_coffee)
-         .then((res) => this.setState({ products: res.data.result.data }));
+         .then((res) => this.setState({ products: res.data.result.data }))
+         .catch((err) => console.log(err));
    };
    onAddOn = () => {
       axios
          .get(this.state.addons)
-         .then((res) => this.setState({ products: res.data.result.data }));
+         .then((res) => this.setState({ products: res.data.result.data }))
+         .catch((err) => console.log(err));
    };
-   // ketika ada updated
-   componentDidUpdate() {}
 
    render() {
       title("Product");
