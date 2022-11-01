@@ -176,12 +176,7 @@ function Profile() {
                         >
                            Cancel
                         </button>
-                        <span
-                           onClick={() => {
-                              localStorage.removeItem("token");
-                           }}
-                           className={`${styles.btn_utility} ${styles.edit}`}
-                        >
+                        <span>
                            <Link to="/forgot">Edit Password</Link>
                            <i class="bi bi-chevron-right"></i>
                         </span>
