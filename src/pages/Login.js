@@ -53,7 +53,7 @@ function Login() {
    const handleToken = (element) => {
       element.preventDefault();
       axios
-         .post(`http://localhost:5000/api/auth`, {
+         .post(`${process.env.REACT_APP_BACKEND_HOST}/api/auth`, {
             email,
             password,
          })
