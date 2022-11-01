@@ -57,7 +57,7 @@
 
 ## Related Project
 
--  Frontend Deploy [`here`](https://bujank-coffee.netlify.app/)
+-  Frontend Deploy [`here`](https://bujankcoffeereact.vercel.app/)
 
 -  Backend API Documentation [`here`](https://documenter.getpostman.com/view/23706970/2s847ESaNS)
 
