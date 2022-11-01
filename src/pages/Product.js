@@ -113,35 +113,33 @@ class Product extends Component {
          })
          .catch((err) => console.log(err));
    }
-
+   onFavorite = () => {
+      axios
+         .get(this.state.favorite)
+         .then((res) => this.setState({ products: res.data.result.data }));
+   };
+   onFood = () => {
+      axios
+         .get(this.state.food)
+         .then((res) => this.setState({ products: res.data.result.data }));
+   };
+   onCoffee = () => {
+      axios
+         .get(this.state.coffee)
+         .then((res) => this.setState({ products: res.data.result.data }));
+   };
+   OnNonCoffee = () => {
+      axios
+         .get(this.state.non_coffee)
+         .then((res) => this.setState({ products: res.data.result.data }));
+   };
+   onAddOn = () => {
+      axios
+         .get(this.state.addons)
+         .then((res) => this.setState({ products: res.data.result.data }));
+   };
    // ketika ada updated
-   componentDidUpdate() {
-      this.onFavorite = () => {
-         axios
-            .get(this.state.favorite)
-            .then((res) => this.setState({ products: res.data.result.data }));
-      };
-      this.onFood = () => {
-         axios
-            .get(this.state.food)
-            .then((res) => this.setState({ products: res.data.result.data }));
-      };
-      this.onCoffee = () => {
-         axios
-            .get(this.state.coffee)
-            .then((res) => this.setState({ products: res.data.result.data }));
-      };
-      this.OnNonCoffee = () => {
-         axios
-            .get(this.state.non_coffee)
-            .then((res) => this.setState({ products: res.data.result.data }));
-      };
-      this.onAddOn = () => {
-         axios
-            .get(this.state.addons)
-            .then((res) => this.setState({ products: res.data.result.data }));
-      };
-   }
+   componentDidUpdate() {}
 
    render() {
       title("Product");
