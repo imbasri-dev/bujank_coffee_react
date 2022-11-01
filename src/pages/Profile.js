@@ -176,7 +176,9 @@ function Profile() {
                         >
                            Cancel
                         </button>
-                        <span>
+                        <span
+                           className={`${styles.btn_utility} ${styles.edit}`}
+                        >
                            <Link to="/forgot">Edit Password</Link>
                            <i class="bi bi-chevron-right"></i>
                         </span>
