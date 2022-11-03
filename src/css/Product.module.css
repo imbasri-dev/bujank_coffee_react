@@ -30,9 +30,9 @@
     color: #9e684b;
 }
 
+/* nav product */
 .nav-product div {
     cursor: pointer;
-    border-bottom: 2px solid #6A4029;
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 700;
@@ -40,6 +40,10 @@
     line-height: 24px;
     color: #6A4029;
     transition: all 0.3s;
+}
+
+.select_category {
+    border-bottom: 2px solid #6A4029;
 }
 
 .nav-product span a {
@@ -173,6 +177,18 @@
     /*Big smartphones [426px -> 600px]*/
     .list-content {
         gap: 50%;
+    }
+
+    .content-product {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+
+    /*Big smartphones [426px -> 600px]*/
+    .list-content {
+        gap: 15%;
     }
 
     .content-product {

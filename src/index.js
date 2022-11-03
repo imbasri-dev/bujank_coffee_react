@@ -5,11 +5,10 @@ import ReactDOM from "react-dom/client";
 // import Profile from "./pages/Profile";
 // import Home from "./pages/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
+import "/node_modules/bootstrap/dist/js/bootstrap.min.js";
 // import  router
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
-
 import "./index.css";
 // import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById("root"));

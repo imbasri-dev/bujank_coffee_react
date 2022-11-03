@@ -12,8 +12,6 @@ import icon_google from "../assets/image/main/icon_googlesignup.png";
 import withNavigate from "../helpers/withNavigate";
 import { useNavigate } from "react-router-dom";
 
-//import icon
-
 // import axios
 import axios from "axios";
 
@@ -59,8 +57,12 @@ function Login() {
          })
          .then((res) => {
             alert("Login success");
-            // console.log(res.data);
-            localStorage.setItem("token", JSON.stringify(res.data.data.token));
+            console.log(res.data);
+            const userData = {
+               token: res.data.data.token,
+               role: res.data.data.role,
+            };
+            localStorage.setItem("userInfo", JSON.stringify(userData));
             navigate("/product");
          })
          .catch((err) => {

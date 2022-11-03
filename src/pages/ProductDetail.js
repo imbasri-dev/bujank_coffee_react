@@ -6,10 +6,12 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/FooterBootstrap";
 import title from "../helpers/title";
 import { Link } from "react-router-dom";
+
 function ProductDetail() {
    title("Product-detail");
    return (
       <>
+         {/* axios get sesuai url dari backend */}
          <Navbar />
          <main className="container ">
             <div className="position-relative row d-flex justify-content-center align-content-center flex-column flex-md-row">

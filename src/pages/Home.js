@@ -29,13 +29,20 @@ import icon_checklist from "../assets/image/main/icon_checklist.png";
 import icon_check from "../assets/image/main/icon_nochecklist.png";
 import hamburger from "../assets/image/main/icon_hamburger.png";
 
+import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import title from "../helpers/title";
 // assets
 class Home extends Component {
-   render() {
-      title("Bujank Coffee");
+   state = {
+      noLogin: <h1>Hello</h1>,
+      isLogin: <Navbar />,
+      userInfo: JSON.parse(localStorage.getItem("userInfo")),
+   };
 
+   render() {
+      console.log(this.state.userInfo);
+      title("Bujank Coffee");
       return (
          <>
             <header>
@@ -97,7 +104,6 @@ class Home extends Component {
                   </section>
                </nav>
             </header>
-
             <main>
                {/* <!-- jumbotron --> */}
                <section className={`${styles.bg_jumbotron} mx-auto d-flex`}>

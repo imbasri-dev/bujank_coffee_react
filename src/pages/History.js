@@ -26,23 +26,15 @@ export default class History extends Component {
                      <Card />
                      <Card />
                      <Card />
-                  </section>
-                  <section className="row justify-content-center">
                      <Card />
                      <Card />
                      <Card />
-                  </section>
-                  <section className="row justify-content-center">
                      <Card />
                      <Card />
                      <Card />
-                  </section>
-                  <section className="row justify-content-center">
                      <Card />
                      <Card />
                      <Card />
-                  </section>
-                  <section className="row justify-content-center">
                      <Card />
                      <Card />
                      <Card />

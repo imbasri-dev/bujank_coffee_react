@@ -3,7 +3,6 @@ font-family: 'Poppins',
 sans-serif;
 font-family: 'Rubik',
 sans-serif; */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Rubik:ital,wght@0,400;0,700;1,400&display=swap');
 
 /* reset format css */
 
@@ -193,7 +192,26 @@ form {
     cursor: pointer;
 }
 
+/* style toggle */
+.toggle {
+    right: 25px;
+    bottom: 15px;
+    position: absolute;
+    font-size: 30px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
 
+.toggle:hover {
+    color: #ff3333;
+    transform: scale(1.075);
+
+}
+
+
+.withToggle {
+    position: relative;
+}
 
 .ready span {
     display: flex;
