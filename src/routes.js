@@ -9,21 +9,29 @@ import Product from "./pages/Product";
 import History from "./pages/History";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
-import EditPromo from "./pages/EditPromo";
-// import CardHistory from "./components/CardHistory";
+import EditPromo from "./pages/admin/EditPromo";
+// import component
 import Promo from "./components/CardPromo";
-import AddProduct from "./pages/AddProduct";
-import AddPromo from "./pages/Addpromo";
+import AddProduct from "./pages/admin/AddProduct";
+import AddPromo from "./pages/admin/AddPromo";
 import Toast from "./components/Toasts";
-
-// import Error from "./pages/Error";
+import NavLogin from "./components/NavbarLogin";
+import PrivateElement from "./components/PrivateElement";
+import Counter from "./pages/Counter";
 
 const router = createBrowserRouter([
    // { path: "/", element: <App />, errorElement: <Error /> },
    { path: "/", element: <Home /> },
    { path: "/login", element: <Login /> },
    { path: "/signup", element: <Signup /> },
-   { path: "/profile", element: <Profile /> },
+   {
+      path: "/profile",
+      element: (
+         <PrivateElement allowedRoles={["user"]}>
+            <Profile />
+         </PrivateElement>
+      ),
+   },
    { path: "/forgot", element: <ForgotPassword /> },
    { path: "/product-detail/:id", element: <ProductDetail /> },
    { path: "/product", element: <Product /> },
@@ -34,6 +42,9 @@ const router = createBrowserRouter([
    { path: "/add-promo", element: <AddPromo /> },
    { path: "/edit-promo", element: <EditPromo /> },
    { path: "/toast", element: <Toast msg="Hello" /> },
+   { path: "/navbarlogin", element: <NavLogin /> },
+
+   { path: "/counter", element: <Counter /> },
 ]);
 
 export default router;

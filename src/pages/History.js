@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import styles from "../css/History.module.css";
+// component
 import Card from "../components/CardHistory";
 import Navbar from "../components/Navbar";
+import NavbarLogin from "../components/NavbarLogin";
 import Footer from "../components/FooterBootstrap";
 import title from "../helpers/title";
-export default class History extends Component {
+class History extends Component {
+   state = {
+      userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
+   };
    render() {
       title("History");
       //   TabTitle("User History");
       return (
          <>
-            <Navbar />
+            {this.state.userInfo.token ? <Navbar /> : <NavbarLogin />}
             {/* <Header /> */}
             <main className={`${styles["hist-bck"]} py-5`}>
                <section>
@@ -22,7 +27,7 @@ export default class History extends Component {
                   </div>
                </section>
                <section className="container col-lg my-5">
-                  <section className="row justify-content-center">
+                  <article className="row justify-content-center">
                      <Card />
                      <Card />
                      <Card />
@@ -38,7 +43,7 @@ export default class History extends Component {
                      <Card />
                      <Card />
                      <Card />
-                  </section>
+                  </article>
                </section>
             </main>
             <Footer />
@@ -46,3 +51,4 @@ export default class History extends Component {
       );
    }
 }
+export default History;

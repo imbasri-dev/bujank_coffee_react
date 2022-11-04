@@ -9,13 +9,14 @@ import icon_chat from "../assets/image/main/icon_message_button.png";
 import icon_profile from "../assets/image/main/img_userprofile.png";
 
 function Navbar() {
+   const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
    return (
       <>
          <nav className="nav d-flex justify-content-between align-items-center mx-auto px-4">
             <Link to="/" className={`${styles["left-nav"]} d-flex py-4`}>
                <img
                   src={icon_coffee}
-                  alt=""
+                  alt="icon_coffee"
                   className="me-2"
                   widht="30"
                   height="30"
@@ -51,18 +52,21 @@ function Navbar() {
                >
                   <img src={icon_chat} alt="" widht="30" height="30" />
                </Link>
+
+               {/* logika jika admin profile tidak ada */}
+               {userInfo.role === "admin" ? <h1>admin</h1> : <h1>user</h1>}
                <Link to="/profile" className="nav-link">
                   <img
                      className={styles.img_userprofile}
                      src={icon_profile}
-                     alt=""
+                     alt="img_userprofile"
                      widht="30"
                      height="30"
                   />
                </Link>
                <Link to="#" className="nav-link d-lg-none d-sm-block">
                   <span className={styles.burger}>
-                     <i class="bi bi-list fs-4"></i>
+                     <i className="bi bi-list fs-4"></i>
                   </span>
                </Link>
             </div>

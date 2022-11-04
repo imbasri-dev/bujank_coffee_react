@@ -314,11 +314,11 @@ nav .nav__utility a .img_userprofile {
 }
 
 
-.birthday[type="date"]::-webkit-inner-spin-button,
+/* .birthday[type="date"]::-webkit-inner-spin-button,
 .birthday[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
-}
+} */
 
 .input__radio {
     margin-top: 25px;

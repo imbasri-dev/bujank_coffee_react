@@ -11,7 +11,6 @@ import icon_google from "../assets/image/main/icon_googlesignup.png";
 // import helpers
 import withNavigate from "../helpers/withNavigate";
 import { useNavigate } from "react-router-dom";
-
 // import axios
 import axios from "axios";
 
@@ -22,8 +21,8 @@ function Login() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    // show password
-   const eye = <i class="bi bi-eye"></i>;
-   const eyeslash = <i class="bi bi-eye-slash"></i>;
+   const eye = <i className="bi bi-eye"></i>;
+   const eyeslash = <i className="bi bi-eye-slash"></i>;
 
    const [type, setType] = useState("password"); //ganti jadi pakai fontawesome
    const [icon, setIcon] = useState(eyeslash); //ganti jadi pakai fontawesome
@@ -57,16 +56,16 @@ function Login() {
          })
          .then((res) => {
             alert("Login success");
-            console.log(res.data);
+            // console.log(res.data);
             const userData = {
                token: res.data.data.token,
                role: res.data.data.role,
             };
             localStorage.setItem("userInfo", JSON.stringify(userData));
-            navigate("/product");
+            navigate("/");
          })
          .catch((err) => {
-            alert("Error/Password wrong");
+            alert("Error email/password wrong");
             console.log(err);
          });
    };
@@ -79,7 +78,12 @@ function Login() {
             </aside>
             <section className={styles.right}>
                <div className={styles.navbar}>
-                  <span className={styles.nav__logo}>
+                  <span
+                     className={styles.nav__logo}
+                     onClick={() => {
+                        navigate("/");
+                     }}
+                  >
                      <img src={icon_coffee} alt="icon_coffee" />
                      <p>Bujank Coffee</p>
                   </span>
@@ -94,7 +98,7 @@ function Login() {
                   <section className={styles.inputbar}>
                      <h1>Login</h1>
                      <div className={styles.input}>
-                        <label for="email">Email Address :</label>
+                        <label htmlFor="email">Email Address :</label>
                         <input
                            type="email"
                            name="email"
@@ -105,7 +109,7 @@ function Login() {
                         />
                      </div>
                      <div className={`${styles.input} ${styles.withToggle}`}>
-                        <label for="password">Password :</label>
+                        <label htmlFor="password">Password :</label>
                         <input
                            type={type}
                            name="password"
@@ -122,7 +126,7 @@ function Login() {
                         Forgot password?
                      </Link>
                      <button
-                        onClick={() => this.props.navigate("/product")}
+                        onClick={() => this.props.navigate("/")}
                         className={`${styles.btn} ${styles.sign}`}
                         type="submit"
                      >
@@ -154,85 +158,3 @@ function Login() {
 }
 
 export default withNavigate(Login);
-
-// class
-// class Login extends Component {
-//    render() {
-//       title("Login");
-//       return (
-//          <Fragment>
-//             <main className={styles.container}>
-//                <aside className={styles.left}>
-//                   <img src={img_signup} alt="img_signup" />
-//                </aside>
-//                <section className={styles.right}>
-//                   <div className={styles.navbar}>
-//                      <span className={styles.nav__logo}>
-//                         <img src={icon_coffee} alt="icon_coffee" />
-//                         <p>Bujank Coffee</p>
-//                      </span>
-//                      <Link
-//                         to="/signup"
-//                         className={`${styles.btn} ${styles.login}`}
-//                      >
-//                         <span>Sign Up</span>
-//                      </Link>
-//                   </div>
-//                   <form className={styles.form_bar}>
-//                      <section className={styles.inputbar}>
-//                         <h1>Login</h1>
-//                         <div className={styles.input}>
-//                            <label for="email">Email Address :</label>
-//                            <input
-//                               type="email"
-//                               name="email"
-//                               id="email"
-//                               placeholder="Enter your email adress"
-//                               required
-//                            />
-//                         </div>
-//                         <div className={styles.input}>
-//                            <label for="password">Password :</label>
-//                            <input
-//                               type="password"
-//                               name="password"
-//                               id="password"
-//                               placeholder="Enter your password"
-//                               required
-//                            />
-//                         </div>
-//                         <Link to="/forgot" className={styles.forgot_password}>
-//                            Forgot password?
-//                         </Link>
-//                         <button
-//                            onClick={() => this.props.navigate("/product")}
-//                            className={`${styles.btn} ${styles.sign}`}
-//                            type="submit"
-//                         >
-//                            Login
-//                         </button>
-//                         <Link className={`${styles.btn} ${styles.google}`}>
-//                            <span>
-//                               <img src={icon_google} alt="icon_google" />
-//                               Sign up with Google
-//                            </span>
-//                         </Link>
-//                      </section>
-//                   </form>
-//                </section>
-//                <section className={styles["card_banner"]}>
-//                   <div>
-//                      <h2>Get your member card now!</h2>
-//                      <p>Let's join with our member and enjoy the deals.</p>
-//                   </div>
-//                   <Link to="/signup" className={styles["btn"]}>
-//                      Create Now
-//                   </Link>
-//                </section>
-//             </main>
-//             {/* footer */}
-//             <Footer />
-//          </Fragment>
-//       );
-//    }
-// }

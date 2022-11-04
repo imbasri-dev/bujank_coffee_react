@@ -1,16 +1,16 @@
-// import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import title from "../helpers/title";
 // import css
 import styles from "../css/Product.module.css";
 // import components
 import Navbar from "../components/Navbar";
+import NavbarLogin from "../components/NavbarLogin";
 import Footer from "../components/FooterBootstrap";
 import CardProduct from "../components/CardProduct";
 import Promo from "../components/CardPromo";
 import withParams from "../helpers/withRouteParams";
 // axios
 import axios from "axios";
-import React, { Component } from "react";
 class Product extends Component {
    // variabel class
    state = {
@@ -75,10 +75,11 @@ class Product extends Component {
 
    render() {
       title("Product");
+      const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
       return (
          <>
             {/* <!-- Start Navbar --> */}
-            <Navbar />
+            {userInfo.token ? <Navbar /> : <NavbarLogin />}
             {/* <!-- End Navbar --> */}
             <main>
                <section
@@ -116,13 +117,14 @@ class Product extends Component {
                            </div>
                         </div>
 
-                        <section className=" text-center row d-flex justify-content-between flex-wrap justify-content-center align-items-center mx-sm-auto">
+                        <section className=" text-center row d-flex justify-content-center justify-content-md-center justify-content-lg-end flex-wrap justify-content-center align-items-center  ">
                            <div
                               className={`row ${styles["list-content"]} d-flex flex-wrap justify-content-start col-12 col-sm-12 col-md-12 `}
                            >
                               {/* <CardProduct /> */}
-                              {this.state.products.map((item) => (
+                              {this.state.products.map((item, key) => (
                                  <CardProduct
+                                    key={`${key}`}
                                     id={item.id}
                                     params={item.id}
                                     product_name={item.name}

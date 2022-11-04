@@ -1,4 +1,4 @@
-footer {
+.footer {
     display: flex;
     justify-content: space-between;
     background: #F8F8F8;
@@ -101,7 +101,7 @@ footer {
     transition: all 0.4s;
 }
 
-@media only screen and (max-device-width: 425px) {
+@media only screen and (max-width: 425px) {
     .card_banner {
         display: none;
         margin: 0 auto;
@@ -114,7 +114,7 @@ footer {
 
 }
 
-@media only screen and (max-device-width: 768px) {
+@media only screen and (max-width: 768px) {
     .form_bar {
         margin: 0 auto;
         width: 90%;
@@ -140,7 +140,7 @@ footer {
     }
 }
 
-@media only screen and (max-device-width: 992px) {
+@media only screen and (max-width: 992px) {
     .left {
         display: none;
     }

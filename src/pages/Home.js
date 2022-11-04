@@ -4,7 +4,7 @@ import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 // footer
 import Footer from "../components/FooterBootstrap.js";
 // assets
-import icon_coffee from "../assets/image/main/logo_coffee.png";
+//
 import img_teamwork from "../assets/image/main/img_teamwork.png";
 import map from "../assets/image/main/img_map.png";
 import netflix from "../assets/image/main/img_netflix.png";
@@ -27,83 +27,26 @@ import icon_location from "../assets/image/main/icon_location.png";
 import icon_person from "../assets/image/main/icon_person.png";
 import icon_checklist from "../assets/image/main/icon_checklist.png";
 import icon_check from "../assets/image/main/icon_nochecklist.png";
-import hamburger from "../assets/image/main/icon_hamburger.png";
 
 import Navbar from "../components/Navbar";
+import NavbarLogin from "../components/NavbarLogin";
 import { Link } from "react-router-dom";
 import title from "../helpers/title";
-// assets
+// import redux
+import { connect } from "react-redux";
+import withLocation from "../helpers/withLocation";
 class Home extends Component {
    state = {
-      noLogin: <h1>Hello</h1>,
-      isLogin: <Navbar />,
-      userInfo: JSON.parse(localStorage.getItem("userInfo")),
+      userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
    };
 
    render() {
-      console.log(this.state.userInfo);
       title("Bujank Coffee");
+      // get token dari localStorage
       return (
          <>
-            <header>
-               <nav className="navbar bg-light ">
-                  <section className="container-fluid d-flex justify-content-between align-items-center">
-                     <Link to="/" className="navbar-brand">
-                        <img
-                           className="me-3"
-                           src={icon_coffee}
-                           alt="icon_coffee"
-                           width="30"
-                           height="30"
-                        />
-                        <span className="fs-6 fw-bold">Bujank Coffee</span>
-                     </Link>
-                     <div
-                        className={`${styles.nav__link} navbar-nav d-flex flex-row flex-lg-row d-none d-lg-flex  mx-auto`}
-                     >
-                        <Link
-                           to="/"
-                           className="nav-link p-2 m-3 active"
-                           aria-current="page"
-                        >
-                           Home
-                        </Link>
-                        <Link to="/product" className="nav-link p-2 m-3">
-                           Product
-                        </Link>
-                        <Link to="/product-detail" className="nav-link p-2 m-3">
-                           Your Cart
-                        </Link>
-                        <Link to="./history" className="nav-link p-2 m-3">
-                           History
-                        </Link>
-                     </div>
-                     <div
-                        className={`${styles.nav__utility} d-none d-sm-none d-md-none d-md-block d-lg-block`}
-                     >
-                        <Link
-                           to="/login"
-                           className={`${styles.login} text-decoration-none fw-bold`}
-                        >
-                           Login
-                        </Link>
-                        <Link
-                           to="/signup"
-                           className={`${styles.signup} text-decoration-none ms-5 fw-bold`}
-                        >
-                           Sign Up
-                        </Link>
-                     </div>
-                     <span>
-                        <img
-                           className="d-lg-none d-md-block"
-                           src={hamburger}
-                           alt="hamburger"
-                        />
-                     </span>
-                  </section>
-               </nav>
-            </header>
+            {/* kondisi render ketika login / tidak */}
+            {this.state.userInfo.token ? <Navbar /> : <NavbarLogin />}
             <main>
                {/* <!-- jumbotron --> */}
                <section className={`${styles.bg_jumbotron} mx-auto d-flex`}>
@@ -121,9 +64,9 @@ class Home extends Component {
                               your day with us for a bigger smile!
                            </p>
                            <span className={`${styles.start} mt-sm-5 mt-md-3`}>
-                              <a className="text-decoration-none" href="/">
+                              <Link to={"/"} className="text-decoration-none">
                                  Get Started
-                              </a>
+                              </Link>
                            </span>
                         </div>
                      </section>
@@ -526,12 +469,12 @@ class Home extends Component {
                               Let's see the deals and pick yours!
                            </p>
                         </div>
-                        <a
+                        <Link
+                           to={"/product"}
                            className={`${styles.btn__promo} ${styles.hover} fs-5 text-decoration-none fw-bold `}
-                           href="/"
                         >
                            See Promo
-                        </a>
+                        </Link>
                      </div>
                   </section>
                </section>
@@ -541,5 +484,9 @@ class Home extends Component {
       );
    }
 }
-
-export default Home;
+const mapStateToProps = (reduxState) => {
+   return {
+      reduxState,
+   };
+};
+export default connect(mapStateToProps)(withLocation(Home));

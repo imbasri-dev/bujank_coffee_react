@@ -67,6 +67,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .nav__logo>p {
@@ -285,14 +286,14 @@ form {
 }
 
 /* mobile */
-@media only screen and (max-device-width: 585px) {
+@media only screen and (max-width: 585px) {
     .card_banner {
         display: none;
     }
 }
 
 /* tablet */
-@media only screen and (max-device-width: 768px) {
+@media only screen and (max-width: 768px) {
     .form_bar {
         margin: 0 auto;
         width: 90%;
@@ -388,7 +389,7 @@ form {
 }
 
 /* tablet and laptop minimum */
-@media only screen and (max-device-width: 992px) {
+@media only screen and (max-width: 992px) {
     .left {
         display: none;
     }

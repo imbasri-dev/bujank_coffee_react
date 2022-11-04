@@ -10,6 +10,10 @@ import "/node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
 import "./index.css";
+
+// redux
+import reduxStore from "./redux/store";
+import { Provider as ReduxProvider } from "react-redux";
 // import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,7 +22,9 @@ root.render(
       {/* <Signup /> */}
       {/* <Profile /> */}
       {/* <Home /> */}
-      <RouterProvider router={router} />
+      <ReduxProvider store={reduxStore}>
+         <RouterProvider router={router} />
+      </ReduxProvider>
    </React.StrictMode>
 );
 

@@ -1,18 +1,18 @@
 import React from "react";
 import styles from "../css/ProductDetail.module.css";
-import "/node_modules/bootstrap/dist/js/bootstrap.min.js";
 import prod_cold_brew from "../assets/image/product/img_coldbrew.png";
 import Navbar from "../components/Navbar";
+import NavbarLogin from "../components/NavbarLogin";
 import Footer from "../components/FooterBootstrap";
 import title from "../helpers/title";
 import { Link } from "react-router-dom";
 
 function ProductDetail() {
    title("Product-detail");
+   const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
    return (
       <>
-         {/* axios get sesuai url dari backend */}
-         <Navbar />
+         {userInfo.token ? <Navbar /> : <NavbarLogin />}
          <main className="container ">
             <div className="position-relative row d-flex justify-content-center align-content-center flex-column flex-md-row">
                {/* breadcrumb */}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import Navbar & Footer
 import Navbar from "../components/Navbar";
 import Footer from "../components/FooterBootstrap";
-
+import NavbarLogin from "../components/NavbarLogin";
 // import Css
 import styles from "../css/Payment.module.css";
 
@@ -14,12 +14,15 @@ import icon_cod from "../assets/image/main/icon_cod.png";
 import icon_bank from "../assets/image/main/icon_bank.png";
 import title from "../helpers/title";
 class Payment extends Component {
+   state = {
+      userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
+   };
    render() {
       title("Payment");
       return (
          <>
             {/* <!-- Start Navbar --> */}
-            <Navbar />
+            {this.state.userInfo.token ? <Navbar /> : <NavbarLogin />}
             {/* <!-- End Navbar --> */}
             <main>
                <div
@@ -126,7 +129,7 @@ class Payment extends Component {
                                           />
                                           <label
                                              className="form-check-label"
-                                             for="flexRadioDefault1"
+                                             htmlFor="flexRadioDefault1"
                                           ></label>
                                           <div
                                              className={
@@ -153,7 +156,7 @@ class Payment extends Component {
                                           />
                                           <label
                                              className="form-check-label"
-                                             for="flexRadioDefault1"
+                                             htmlFor="flexRadioDefault1"
                                           ></label>
                                           <div
                                              className={
@@ -180,7 +183,7 @@ class Payment extends Component {
                                           />
                                           <label
                                              className="form-check-label"
-                                             for="flexRadioDefault1"
+                                             htmlFor="flexRadioDefault1"
                                           ></label>
                                           <div
                                              className={

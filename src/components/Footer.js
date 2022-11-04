@@ -5,12 +5,14 @@ import icon_coffee from "../assets/image/main/logo_coffee.png";
 import icon_ig from "../assets/image/main/icon_ig.png";
 import icon_fb from "../assets/image/main/icon_fb.png";
 import icon_tw from "../assets/image/main/icon_twitter.png";
+import { useNavigate } from "react-router-dom";
 function Footer() {
+   const navigate = useNavigate();
    return (
-      <footer>
+      <footer className={styles.footer}>
          <aside className={styles.foot_left}>
             <div className={styles.foot_left_desc}>
-               <span>
+               <span className={styles.icon__coffee}>
                   <img
                      src={icon_coffee}
                      alt="icon_coffee"

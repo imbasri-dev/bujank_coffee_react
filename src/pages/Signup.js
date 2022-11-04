@@ -86,7 +86,12 @@ class Signup extends Component {
                </aside>
                <section className={styles.right}>
                   <div className={styles.navbar}>
-                     <span className={styles.nav__logo}>
+                     <span
+                        className={styles.nav__logo}
+                        onClick={() => {
+                           this.props.navigate("/");
+                        }}
+                     >
                         <img src={icon_coffee} alt="icon_coffee" />
                         <p>Bujank Coffee</p>
                      </span>
@@ -164,9 +169,9 @@ class Signup extends Component {
                      <h2>Get your member card now!</h2>
                      <p>Let's join with our member and enjoy the deals.</p>
                   </div>
-                  <a href="/" className={styles["btn"]}>
+                  <Link to={"/signup"} className={styles["btn"]}>
                      Create Now
-                  </a>
+                  </Link>
                </section>
             </main>
             <Footer />

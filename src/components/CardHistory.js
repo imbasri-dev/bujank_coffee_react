@@ -32,10 +32,10 @@ class CardHistory extends Component {
                   className={`${styles.del_close} position-absolute text-decoration-none `}
                >
                   <p className={styles.delete}>
-                     <i class="bi bi-trash3"></i>
+                     <i className="bi bi-trash3"></i>
                   </p>
                   <p className={styles.close}>
-                     <i class="bi bi-x-circle"></i>
+                     <i className="bi bi-x-circle"></i>
                   </p>
                </div>
             </Link>
