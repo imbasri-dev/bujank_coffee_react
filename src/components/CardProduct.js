@@ -16,7 +16,7 @@ function CardProduct(props) {
       >
          <img
             className={styles["list-product-image"]}
-            src={`http://localhost:5000/${props.image_product}`}
+            src={`${props.image_product}`}
             alt="image_product"
          />
          <p className={styles.title}>{props.product_name}</p>

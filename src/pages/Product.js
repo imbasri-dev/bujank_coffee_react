@@ -38,6 +38,7 @@ class Product extends Component {
             // this.setState({ products: res.data.result });
             this.setState({ products: res.data.result.data }, () => {
                // console.log(res.data);
+               // return res.data.result.data[0].image;
             });
          })
          .catch((err) => console.log(err));
@@ -122,6 +123,7 @@ class Product extends Component {
                               className={`row ${styles["list-content"]} d-flex flex-wrap justify-content-start col-12 col-sm-12 col-md-12 `}
                            >
                               {/* <CardProduct /> */}
+
                               {this.state.products.map((item, key) => (
                                  <CardProduct
                                     key={`${key}`}
