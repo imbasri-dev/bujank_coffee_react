@@ -1,16 +1,18 @@
 import React, { Component } from "react";
-import title from "../helpers/title";
+import title from "../../helpers/title";
 // import css
-import styles from "../css/Product.module.css";
+import styles from "../../css/admin/ProductAdmin.module.css";
 // import components
-import Navbar from "../components/Navbar";
-import NavbarLogin from "../components/NavbarLogin";
-import NavbarAdmin from "../components/NavbarAdmin";
-import Footer from "../components/FooterBootstrap";
-import CardProduct from "../components/CardProduct";
-import Promo from "../components/CardPromo";
-import withParams from "../helpers/withRouteParams";
-import withSearchParams from "../helpers/withSearchParams";
+import Navbar from "../../components/Navbar";
+import NavbarLogin from "../../components/NavbarLogin";
+import NavbarAdmin from "../../components/NavbarAdmin";
+import Footer from "../../components/FooterBootstrap";
+import CardProduct from "../../components/CardProduct";
+import Promo from "../../components/CardPromo";
+import withParams from "../../helpers/withRouteParams";
+import withSearchParams from "../../helpers/withSearchParams";
+import withNavigate from "../../helpers/withNavigate";
+
 // axios
 import axios from "axios";
 class Product extends Component {
@@ -232,6 +234,22 @@ class Product extends Component {
                               ))}
                            </div>
                         </section>
+                        <button
+                           onClick={() => {
+                              this.props.navigate("/add-product");
+                           }}
+                           className={`${styles.addNew}`}
+                        >
+                           Add new product
+                        </button>
+                        <button
+                           className={`${styles.addNewPromo}`}
+                           onClick={() => {
+                              this.props.navigate("/add-promo");
+                           }}
+                        >
+                           Add Promo
+                        </button>
                      </aside>
                   </div>
                </section>
@@ -242,4 +260,4 @@ class Product extends Component {
    }
 }
 
-export default withSearchParams(withParams(Product));
+export default withNavigate(withSearchParams(withParams(Product)));

@@ -14,6 +14,9 @@ import { useNavigate } from "react-router-dom";
 // import axios
 import axios from "axios";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Login() {
    title("Login");
    const navigate = useNavigate();
@@ -46,6 +49,18 @@ function Login() {
       setPassword(event.target.value);
    };
 
+   const SuccessToastMessage = () => {
+      toast.success("Login Success !", {
+         position: toast.POSITION.TOP_RIGHT,
+      });
+   };
+
+   const ErrorToastMessage = () => {
+      toast.error("Error Email/Password wrong!", {
+         position: toast.POSITION.TOP_RIGHT,
+      });
+   };
+
    // get token dan simpan ke localstorage
    const handleToken = (element) => {
       element.preventDefault();
@@ -61,11 +76,12 @@ function Login() {
                token: res.data.data.token,
                role: res.data.data.role,
             };
+            SuccessToastMessage();
             localStorage.setItem("userInfo", JSON.stringify(userData));
             navigate("/");
          })
          .catch((err) => {
-            alert("Error email/password wrong");
+            ErrorToastMessage();
             console.log(err);
          });
    };
@@ -126,7 +142,7 @@ function Login() {
                         Forgot password?
                      </Link>
                      <button
-                        onClick={() => this.props.navigate("/")}
+                        // onClick={() => navigate("/")}
                         className={`${styles.btn} ${styles.sign}`}
                         type="submit"
                      >
@@ -153,6 +169,7 @@ function Login() {
          </main>
          {/* footer */}
          <Footer />
+         <ToastContainer />
       </>
    );
 }

@@ -1,15 +1,39 @@
 import React, { Component } from "react";
 // component
-import NavbarLogin from "../../components/NavbarLogin";
 import Footer from "../../components/FooterBootstrap";
 import styles from "../../css/admin/AddPromo.module.css";
 import addImage from "../../assets/image/main/img_dummy_uploadphoto.png";
+import title from "../../helpers/title";
+import Navbar from "../../components/Navbar";
+import NavbarAdmin from "../../components/NavbarAdmin";
+import NavbarLogin from "../../components/NavbarLogin";
+
+import withNavigate from "../../helpers/withNavigate";
 
 export class AddPromo extends Component {
+   state = {
+      userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
+      navLogin: <Navbar />,
+      navAdmin: <NavbarAdmin />,
+      navnotLogin: <NavbarLogin />,
+   };
+
+   navType = () => {
+      if (this.state.userInfo.token) {
+         if (this.state.userInfo.role === "user") {
+            return this.state.navLogin;
+         } else {
+            return this.state.navAdmin;
+         }
+      } else {
+         return this.state.navnotLogin;
+      }
+   };
    render() {
+      title("Product");
       return (
          <>
-            <NavbarLogin />
+            <this.navType />
             <main className="row mt-5 d-flex justify-content-lg-between justify-content-md-center">
                {/* content left */}
                <span>
@@ -158,7 +182,12 @@ export class AddPromo extends Component {
                         </div>
                      </section>
                      <div className={`${styles.button_save} `}>
-                        <button className={`${styles.button_submit_} mb-4`}>
+                        <button
+                           onClick={() => {
+                              this.props.navigate("/product-admin");
+                           }}
+                           className={`${styles.button_submit_} mb-4`}
+                        >
                            Save Product
                         </button>
                         <button
@@ -176,4 +205,4 @@ export class AddPromo extends Component {
    }
 }
 
-export default AddPromo;
+export default withNavigate(AddPromo);

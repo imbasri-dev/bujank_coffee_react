@@ -33,10 +33,10 @@ function NavbarLogin() {
                      <Link to="/product" className="nav-link p-2 m-3">
                         Product
                      </Link>
-                     <Link to="/payment" className="nav-link p-2 m-3">
+                     <Link to="/signup" className="nav-link p-2 m-3">
                         Your Cart
                      </Link>
-                     <Link to="/history" className="nav-link p-2 m-3">
+                     <Link to="/signup" className="nav-link p-2 m-3">
                         History
                      </Link>
                   </div>

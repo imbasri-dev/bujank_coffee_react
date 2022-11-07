@@ -19,6 +19,7 @@ export class EditPromo extends Component {
                      <span className={styles.title_choco}>Edit promo</span>
                   </span>
                   <Link
+                     to={"/product-admin"}
                      className={`${styles.title_choco} pe-sm-5 pe-md-5 pe-lg-5`}
                   >
                      Cancel

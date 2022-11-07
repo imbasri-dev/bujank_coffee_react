@@ -11,10 +11,11 @@ import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
 import EditPromo from "./pages/admin/EditPromo";
 import EditProductDetail from "./pages/admin/EditProductDetail";
-// import component
-import Promo from "./components/CardPromo";
+import ProductAdmin from "./pages/admin/ProductAdmin";
 import AddProduct from "./pages/admin/AddProduct";
 import AddPromo from "./pages/admin/AddPromo";
+// import component
+import Promo from "./components/CardPromo";
 import Toast from "./components/Toasts";
 import NavLogin from "./components/NavbarLogin";
 import PrivateElement from "./components/PrivateElement";
@@ -97,6 +98,14 @@ const router = createBrowserRouter([
       element: (
          <PrivateElement allowedRoles={["admin"]}>
             <EditProductDetail />
+         </PrivateElement>
+      ),
+   },
+   {
+      path: "/product-admin",
+      element: (
+         <PrivateElement allowedRoles={["admin"]}>
+            <ProductAdmin />
          </PrivateElement>
       ),
    },

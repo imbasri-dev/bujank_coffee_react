@@ -29,7 +29,7 @@ function Navbar() {
                <Link to="/" className="nav-link">
                   Home
                </Link>
-               <Link to="/product" className="nav-link">
+               <Link to="/product-admin" className="nav-link">
                   Product
                </Link>
                <Link to="#" className="nav-link">
@@ -53,11 +53,11 @@ function Navbar() {
                   <img src={icon_chat} alt="" widht="30" height="30" />
                </Link>
                <Link
-                  to="#"
                   className="nav-link "
                   onClick={() => {
+                     // navigate("/");
                      localStorage.removeItem("userInfo");
-                     this.props.navigate("/");
+                     window.location("/");
                   }}
                >
                   <span className="btn btn-secondary">Logout</span>

@@ -1,0 +1,278 @@
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
+/* CSS Navbar */
+.borderTop {
+    border-top: 1px solid #9F9F9F;
+    position: relative;
+}
+
+.left-nav span {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #0B132A;
+}
+
+.center-nav a {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #4F5665;
+}
+
+.center-nav a:hover {
+    transform: scale(1.075);
+    color: #9e684b;
+}
+
+/* nav product */
+.nav-product div {
+    cursor: pointer;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    color: #6A4029;
+    transition: all 0.3s;
+}
+
+.select_category {
+    border-bottom: 2px solid #6A4029;
+}
+
+.nav-product span a {
+    text-decoration: none;
+    color: #6A4029;
+}
+
+.nav-product span:hover {
+    transform: scale(1.075);
+    color: #6A4029;
+}
+
+.product-left {
+    width: 30%;
+    border-right: 1px solid #9F9F9F;
+}
+
+.product-right {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.title-promo {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    color: #6A4029;
+}
+
+.desc-promo {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: #000000;
+}
+
+
+
+.description-promo>span {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    color: #000000;
+}
+
+.description-promo>p {
+    font-family: 'rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #000000;
+    padding-top: 3px;
+}
+
+.promo-one {
+    width: 335px;
+    height: 109px;
+    background: #88B788;
+    border-radius: 20px;
+}
+
+.promo-two {
+    width: 335px;
+    height: 109px;
+    background: #F5C361;
+    border-radius: 20px;
+}
+
+.promo-four {
+    width: 335px;
+    height: 109px;
+    background: #C59378;
+    border-radius: 20px;
+}
+
+.apply-coupon {
+    width: 85%;
+    height: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 26px;
+    color: #FFFFFF;
+    background: #6A4029;
+    border-radius: 20px;
+    border: none;
+}
+
+.apply-coupon:hover {
+    background-color: #805742;
+}
+
+.noted span {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: #4F5665;
+}
+
+.noted p {
+    margin: 5px 0;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #4F5665;
+}
+
+.list-content {
+    margin-top: 120px !important;
+    gap: 6%;
+}
+
+.addNew {
+    background: #6A4029;
+    border-radius: 20px;
+    height: 60px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    /* identical to box height, or 120% */
+    color: #FFFFFF;
+}
+
+.addNewPromo {
+    position: absolute;
+    bottom: 0;
+    background: #FFBA33;
+    border-radius: 20px;
+    font-size: 25px;
+    line-height: 30px;
+    width: 280px;
+    height: 60px;
+    left: 85px;
+    top: 1221px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    /* identical to box height, or 120% */
+    text-align: center;
+    color: #6A4029;
+}
+
+@media only screen and (max-width: 600px) {
+
+    /*Big smartphones [426px -> 600px]*/
+    .list-content {
+        width: 100%;
+    }
+
+    .content-product {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .addNewPromo {
+        left: 145px;
+        /* bottom: 0px; */
+        top: 1023px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .addNewPromo {
+        left: 25%;
+        right: 25%;
+        /* bottom: 0px; */
+        top: 1023px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+
+    .list-content {
+        gap: 6%;
+    }
+
+    .content-product {
+        width: 50%;
+    }
+
+}
+
+
+@media only screen and (max-width: 768px) {
+    .list-content {
+        gap: 12%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .addNewPromo {
+        left: 234px;
+        /* bottom: 0px; */
+        top: 1040px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .list-content {
+        gap: 12%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-left: 10px;
+    }
+
+    .content-product {
+        width: 100%;
+    }
+
+}

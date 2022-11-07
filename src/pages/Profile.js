@@ -27,6 +27,7 @@ class Profile extends Component {
       lastname: "",
       birthday: "",
       gender: "",
+      isEdit: true,
    };
    componentDidMount() {
       const { userInfo } = this.state;
@@ -38,8 +39,8 @@ class Profile extends Component {
       })
          .then((response) => {
             const data = response.data.result[0];
-            console.log(data);
-            console.log(response.msg);
+            // console.log(data);
+            // console.log(response.msg);
             this.setState({
                displayname: data.displayname,
                email: data.email,
@@ -47,11 +48,7 @@ class Profile extends Component {
                address: data.address,
                firstname: data.firstname,
                lastname: data.lastname,
-               birthday: data.birthday
-                  .slice(0, 10)
-                  .split("-")
-                  .reverse()
-                  .join("/"),
+               birthday: data.birthday,
                gender: data.gender,
                image: data.image,
             });
@@ -75,8 +72,8 @@ class Profile extends Component {
                lastname: this.state.lastname,
                address: this.state.address,
                image: this.state.image,
-               // birthday: this.state.birthday,
-               // gender: this.state.gende[0],
+               birthday: this.state.birthday,
+               gender: this.state.gender,
             },
             {
                headers: {
@@ -121,7 +118,9 @@ class Profile extends Component {
    onGender = (e) => {
       this.setState({ gender: e.target.value });
    };
-
+   onEdit = () => {
+      this.setState({ isEdit: false });
+   };
    render() {
       const {
          displayname,
@@ -161,13 +160,19 @@ class Profile extends Component {
                               />
                            </div>
                            <h3>{displayname}</h3>
-                           <p className={styles.user__email}>{email}</p>
+                           <p className={`${styles.user__email} py-3`}>
+                              {email}
+                           </p>
                            <p id="order">Has been ordered 15 products</p>
                         </section>
                         <section className={styles.user__contact}>
                            <div className={styles.contact}>
                               <h2>Contacts</h2>
-                              <img src={icon_edit} alt="icon_edit" />
+                              <img
+                                 src={icon_edit}
+                                 alt="icon_edit"
+                                 onClick={this.onEdit}
+                              />
                            </div>
                            <div className={styles.input__contact}>
                               <div className={styles.column}>
@@ -176,8 +181,9 @@ class Profile extends Component {
                                     type="email"
                                     name="email"
                                     id="email"
-                                    onChange={this.onEmail}
+                                    // onChange={this.onEmail}
                                     value={email}
+                                    disabled={this.state.isEdit}
                                  />
                               </div>
                               <div className={styles.column}>
@@ -189,7 +195,8 @@ class Profile extends Component {
                                     name="phone_number"
                                     id="phones"
                                     value={phone_number}
-                                    onChange={this.onPhone}
+                                    // onChange={this.onPhone}
+                                    disabled={this.state.isEdit}
                                  />
                               </div>
                            </div>
@@ -203,6 +210,7 @@ class Profile extends Component {
                                  id="address"
                                  value={address}
                                  onChange={this.onAddress}
+                                 disabled={this.state.isEdit}
                               />
                            </div>
                         </section>
@@ -211,7 +219,11 @@ class Profile extends Component {
                         <div className={styles.user__detail}>
                            <div className={styles.detail}>
                               <h2>Details</h2>
-                              <img src={icon_edit} alt="icon_change" />
+                              <img
+                                 src={icon_edit}
+                                 alt="icon_change"
+                                 onClick={this.onEdit}
+                              />
                            </div>
                            <div className={styles.user__name}>
                               <div className={styles.input__name}>
@@ -225,6 +237,7 @@ class Profile extends Component {
                                        id="displayname"
                                        value={displayname}
                                        onChange={this.onDisplayname}
+                                       disabled={this.state.isEdit}
                                     />
                                  </div>
                                  <div className={styles.input__column}>
@@ -237,10 +250,11 @@ class Profile extends Component {
                                        id="firstname"
                                        value={firstname}
                                        onChange={this.onFirstname}
+                                       disabled={this.state.isEdit}
                                     />
                                  </div>
                                  <div className={styles.input__column}>
-                                    <label htmlFor="llastnameast">
+                                    <label htmlFor="lastname">
                                        Last name :
                                     </label>
                                     <input
@@ -249,6 +263,7 @@ class Profile extends Component {
                                        id="lastname"
                                        value={lastname}
                                        onChange={this.onLastname}
+                                       disabled={this.state.isEdit}
                                     />
                                  </div>
                               </div>
@@ -256,12 +271,20 @@ class Profile extends Component {
                                  <label htmlFor="birthday">DD/MM/YYYY :</label>
                                  <input
                                     className={styles.birthday}
-                                    type="text"
+                                    type={this.state.isEdit ? "text" : "date"}
                                     name="birthday"
                                     id="birthday"
-                                    value={birthday}
-                                    required
+                                    placeholder={
+                                       birthday == null
+                                          ? null
+                                          : birthday
+                                               .slice(0, 10)
+                                               .split("-")
+                                               .reverse()
+                                               .join("/")
+                                    }
                                     onChange={this.onBirthday}
+                                    disabled={this.state.isEdit}
                                  />
                                  <div className={styles.input__radio}>
                                     <input
@@ -271,6 +294,7 @@ class Profile extends Component {
                                        value={"MALE"}
                                        onChange={this.onGender}
                                        checked={gender === "MALE"}
+                                       disabled={this.state.isEdit}
                                     />
                                     <label
                                        htmlFor="MALE"
@@ -287,6 +311,7 @@ class Profile extends Component {
                                        value={"FEMALE"}
                                        onChange={this.onGender}
                                        checked={gender === "FEMALE"}
+                                       disabled={this.state.isEdit}
                                     />
                                     <label
                                        htmlFor="FEMALE"
