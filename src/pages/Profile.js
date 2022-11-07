@@ -84,20 +84,23 @@ class Profile extends Component {
                headers: {
                   "x-access-token": userInfo.token,
                },
-            }
+            },
+            this.SavedToastMessage()
          );
       } catch (err) {
          console.log(err);
       }
    };
-
+   Reload = () => {
+      this.props.navigate("/profile");
+   };
    SuccessToastMessage = () => {
       toast.success("Logout Success!", {
          position: toast.POSITION.TOP_RIGHT,
       });
    };
    SavedToastMessage = () => {
-      toast.success("data successful!", {
+      toast.success("data changed successfully", {
          position: toast.POSITION.TOP_RIGHT,
       });
    };
