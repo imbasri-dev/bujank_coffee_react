@@ -7,7 +7,7 @@ import Navbar from "../../components/Navbar";
 import NavbarLogin from "../../components/NavbarLogin";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import Footer from "../../components/FooterBootstrap";
-import CardProduct from "../../components/CardProduct";
+import CardProduct from "../../components/CardProductAdmin";
 import Promo from "../../components/CardPromo";
 import withParams from "../../helpers/withRouteParams";
 import withSearchParams from "../../helpers/withSearchParams";

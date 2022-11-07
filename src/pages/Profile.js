@@ -6,6 +6,10 @@ import NavbarLogin from "./../components/NavbarLogin";
 // helper
 import title from "./../helpers/title";
 import withNavigate from "../helpers/withNavigate";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // import Router Link
 import { Link } from "react-router-dom";
 // css
@@ -64,6 +68,7 @@ class Profile extends Component {
       // console.log(this.state.address);
       try {
          const { userInfo } = this.state;
+
          Axios.patch(
             this.state.url,
             {
@@ -84,6 +89,17 @@ class Profile extends Component {
       } catch (err) {
          console.log(err);
       }
+   };
+
+   SuccessToastMessage = () => {
+      toast.success("Logout Success!", {
+         position: toast.POSITION.TOP_RIGHT,
+      });
+   };
+   SavedToastMessage = () => {
+      toast.success("data successful!", {
+         position: toast.POSITION.TOP_RIGHT,
+      });
    };
 
    // refactory handleInput
@@ -117,6 +133,9 @@ class Profile extends Component {
    };
    onGender = (e) => {
       this.setState({ gender: e.target.value });
+   };
+   onFile = (e) => {
+      this.setState({ image: e.target.value });
    };
    onEdit = () => {
       this.setState({ isEdit: false });
@@ -156,6 +175,7 @@ class Profile extends Component {
                                  type="file"
                                  name="file"
                                  id="files"
+                                 onChange={this.onFile}
                                  className={styles.hidden}
                               />
                            </div>
@@ -345,8 +365,12 @@ class Profile extends Component {
                            </span>
                            <span
                               onClick={() => {
+                                 this.SuccessToastMessage();
                                  localStorage.removeItem("userInfo");
-                                 this.props.navigate("/");
+                                 setTimeout(() => {
+                                    // Run code
+                                    this.props.navigate("/");
+                                 }, 5000);
                               }}
                               className={`${styles.btn_utility} ${styles.logout}`}
                            >
@@ -359,6 +383,7 @@ class Profile extends Component {
                </section>
             </main>
             <Footer />
+            <ToastContainer />
          </>
       );
    }

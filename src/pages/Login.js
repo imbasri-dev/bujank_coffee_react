@@ -78,7 +78,10 @@ function Login() {
             };
             SuccessToastMessage();
             localStorage.setItem("userInfo", JSON.stringify(userData));
-            navigate("/");
+            setTimeout(() => {
+               // Run code
+               navigate("/");
+            }, 5000);
          })
          .catch((err) => {
             ErrorToastMessage();

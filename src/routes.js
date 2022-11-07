@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import EditPromo from "./pages/admin/EditPromo";
 import EditProductDetail from "./pages/admin/EditProductDetail";
 import ProductAdmin from "./pages/admin/ProductAdmin";
+import AddProductId from "./pages/admin/AddProductId";
 import AddProduct from "./pages/admin/AddProduct";
 import AddPromo from "./pages/admin/AddPromo";
 // import component
@@ -66,6 +67,14 @@ const router = createBrowserRouter([
       element: (
          <PrivateElement allowedRoles={["user"]}>
             <Payment />
+         </PrivateElement>
+      ),
+   },
+   {
+      path: "/add-product/:id",
+      element: (
+         <PrivateElement allowedRoles={["admin"]}>
+            <AddProductId />
          </PrivateElement>
       ),
    },

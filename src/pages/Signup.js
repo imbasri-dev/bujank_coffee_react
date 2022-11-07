@@ -10,6 +10,8 @@ import icon_google from "../assets/image/main/icon_googlesignup.png";
 import title from "../helpers/title";
 import withNavigate from "../helpers/withNavigate";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import axios from "axios";
 import Axios from "axios";
 // import fontawesome
@@ -24,6 +26,7 @@ class Signup extends Component {
       email: "",
       password: "",
       phone_number: "",
+      errMessage: "",
    };
    handleNameInput = (e) => {
       this.setState({
@@ -44,6 +47,12 @@ class Signup extends Component {
       });
    };
 
+   SuccessToastMessage = () => {
+      toast.success("Signup Success !", {
+         position: toast.POSITION.TOP_RIGHT,
+      });
+   };
+
    onSubmit = (e) => {
       e.preventDefault();
       const userObj = {
@@ -56,11 +65,18 @@ class Signup extends Component {
          userObj
       )
          .then((res) => {
-            console.log(res.data);
-            this.props.navigate("/login");
+            // console.log(res.data);
+            this.SuccessToastMessage();
+            setTimeout(() => {
+               // Run code
+               this.props.navigate("/login");
+            }, 2000);
          })
          .catch((err) => {
-            console.log(err);
+            // console.log(err.response.data);
+            toast.error(err.response.data.msg.err, {
+               position: toast.POSITION.TOP_RIGHT,
+            });
          });
       this.setState({ email: "", password: "", phone_number: "" });
    };
@@ -175,6 +191,7 @@ class Signup extends Component {
                </section>
             </main>
             <Footer />
+            <ToastContainer />
             {/* footer */}
          </Fragment>
       );
