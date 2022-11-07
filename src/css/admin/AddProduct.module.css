@@ -1,0 +1,145 @@
+.title_choco {
+    color: #6A4029;
+    font-weight: 700;
+}
+
+.addImage {
+    margin-top: 90px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.hour_bar {
+    margin-top: 130px;
+}
+
+.stock_bar {
+    margin-top: 120px;
+}
+
+.stock_bar label {
+    margin-bottom: 40px;
+}
+
+.hour_bar label {
+    margin-bottom: 45px;
+}
+
+.btn_ {
+    border-radius: 20px;
+    width: 90%;
+    height: 80px;
+    cursor: pointer;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5rem;
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.take {
+    background: #0B132A;
+    color: #fff;
+}
+
+.choose {
+    color: #6A4029;
+    background: #FFBA33;
+}
+
+.input_ {
+    width: 360px;
+    height: 83px;
+    background: #FFFFFF;
+    border: 1px solid #9F9F9F;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    font-size: 1.5em;
+}
+
+
+/* content right */
+.content_right {
+    margin-top: 130px;
+}
+
+.input_right {
+    border: none;
+    border-bottom: 1px solid #4F5665;
+    width: 90%;
+    height: 50%;
+    font-size: 1.25em;
+    padding: 30px 0;
+}
+
+.circle {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    color: #000000;
+    width: 60px;
+    padding: 5px;
+    height: 60px;
+    background: #FFBA33;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.button_method {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFBA33;
+    border-radius: 20px;
+    height: 60px;
+    width: 25%;
+    padding: 2%;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 24px;
+    /* identical to box height */
+    color: #6A4029;
+    cursor: pointer;
+    margin-bottom: 80px;
+    margin-top: 30px;
+}
+
+.button_submit_ {
+    background: #6A4029;
+    box-shadow: 0px 6px 20px rgba(106, 64, 41, 0.4);
+    border-radius: 20px;
+    cursor: pointer;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 138.84%;
+    /* identical to box height, or 35px */
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+    height: 80px;
+    width: 90%;
+}
+
+
+.grey {
+    /* buatkondisi click */
+    background: rgba(186, 186, 186, 0.35);
+    color: #4F5665;
+}

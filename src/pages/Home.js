@@ -30,6 +30,7 @@ import icon_check from "../assets/image/main/icon_nochecklist.png";
 
 import Navbar from "../components/Navbar";
 import NavbarLogin from "../components/NavbarLogin";
+import NavbarAdmin from "../components/NavbarAdmin";
 import { Link } from "react-router-dom";
 import title from "../helpers/title";
 // import redux
@@ -38,15 +39,29 @@ import withLocation from "../helpers/withLocation";
 class Home extends Component {
    state = {
       userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
+      navLogin: <Navbar />,
+      navAdmin: <NavbarAdmin />,
+      navnotLogin: <NavbarLogin />,
    };
-
+   navType = () => {
+      if (this.state.userInfo.token) {
+         if (this.state.userInfo.role === "user") {
+            return this.state.navLogin;
+         } else {
+            return this.state.navAdmin;
+         }
+      } else {
+         return this.state.navnotLogin;
+      }
+   };
    render() {
       title("Bujank Coffee");
       // get token dari localStorage
       return (
          <>
+            <this.navType />
             {/* kondisi render ketika login / tidak */}
-            {this.state.userInfo.token ? <Navbar /> : <NavbarLogin />}
+            {/* {this.state.userInfo.token ? <Navbar /> : <NavbarLogin />} */}
             <main>
                {/* <!-- jumbotron --> */}
                <section className={`${styles.bg_jumbotron} mx-auto d-flex`}>

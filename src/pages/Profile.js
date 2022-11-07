@@ -12,13 +12,13 @@ import { Link } from "react-router-dom";
 import styles from "./../css/Profile.module.css";
 // assets
 import icon_edit from "./../assets/image/main/icon_editpencil.png";
-import img_userprofile from "./../assets/image/main/img_userprofile.png";
+// import img_userprofile from "./../assets/image/main/img_userprofile.png";
 // axios
 import Axios from "axios";
 class Profile extends Component {
    state = {
       userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
-      url: `${process.env.REACT_APP_BACKEND_HOST}/api/profile/`,
+      url: `${process.env.REACT_APP_BACKEND_HOST}/api/profile`,
       email: "",
       phone_number: "",
       address: "",
@@ -52,7 +52,8 @@ class Profile extends Component {
                   .split("-")
                   .reverse()
                   .join("/"),
-               gender: [data.gender],
+               gender: data.gender,
+               image: data.image,
             });
          })
          .catch((err) => {
@@ -60,40 +61,69 @@ class Profile extends Component {
          });
    }
 
-   // refactory handleInput
-   handleChange = (event) => {
-      const { name, value } = event.target;
-      this.setState({
-         [name]: value,
-      });
+   // memasukan data kedatabase
+   submitEditprofile = async (event) => {
+      event.preventDefault();
+      // console.log(this.state.address);
+      try {
+         const { userInfo } = this.state;
+         Axios.patch(
+            this.state.url,
+            {
+               displayname: this.state.displayname,
+               firstname: this.state.firstname,
+               lastname: this.state.lastname,
+               address: this.state.address,
+               image: this.state.image,
+               // birthday: this.state.birthday,
+               // gender: this.state.gende[0],
+            },
+            {
+               headers: {
+                  "x-access-token": userInfo.token,
+               },
+            }
+         );
+      } catch (err) {
+         console.log(err);
+      }
    };
-   // onEmail = (e) => {
-   //    this.setState({ email: e.target.value });
-   // };
-   // onPhone = (e) => {
-   //    this.setState({ phone_number: e.target.value });
-   // };
-   // onAddress = (e) => {
-   //    this.setState({ address: e.target.value });
-   // };
-   // onDisplayname = (e) => {
-   //    this.setState({ displayname: e.target.value });
-   // };
-   // onFirstname = (e) => {
-   //    this.setState({ firstname: e.target.value });
-   // };
-   // onLastname = (e) => {
-   //    this.setState({ lastname: e.target.value });
-   // };
-   // onBirthday = (e) => {
-   //    this.setState({ birthday: e.target.value });
-   // };
-   // onGender = (e) => {
-   //    this.setState({ gender: e.target.value });
+
+   // refactory handleInput
+   // handleChange = (event) => {
+   //    const { name, value } = event.target;
+   //    this.setState({
+   //       [name]: value,
+   //    });
    // };
 
+   onEmail = (e) => {
+      this.setState({ email: e.target.value });
+   };
+   onPhone = (e) => {
+      this.setState({ phone_number: e.target.value });
+   };
+   onAddress = (e) => {
+      this.setState({ address: e.target.value });
+   };
+   onDisplayname = (e) => {
+      this.setState({ displayname: e.target.value });
+   };
+   onFirstname = (e) => {
+      this.setState({ firstname: e.target.value });
+   };
+   onLastname = (e) => {
+      this.setState({ lastname: e.target.value });
+   };
+   onBirthday = (e) => {
+      this.setState({ birthday: e.target.value });
+   };
+   onGender = (e) => {
+      this.setState({ gender: e.target.value });
+   };
+
    render() {
-      let {
+      const {
          displayname,
          email,
          phone_number,
@@ -102,6 +132,7 @@ class Profile extends Component {
          lastname,
          birthday,
          gender,
+         image,
       } = this.state;
       // birthday.slice(0, 10).split("-").reverse().join("/"); debug
       // console.log(gender[0] === "MALE" ? "ya" : "no"); debug
@@ -118,10 +149,7 @@ class Profile extends Component {
                      <div className={styles.content__contact}>
                         <section className={styles.user__profile}>
                            <div className={styles.user__img}>
-                              <img
-                                 src={img_userprofile}
-                                 alt="img_userprofile"
-                              />
+                              <img src={image} alt="img_userprofile" />
                               <label htmlFor="files" id="lable_file">
                                  <img src={icon_edit} alt="icon_edit" />
                               </label>
@@ -148,7 +176,7 @@ class Profile extends Component {
                                     type="email"
                                     name="email"
                                     id="email"
-                                    onChange={this.handleChange}
+                                    onChange={this.onEmail}
                                     value={email}
                                  />
                               </div>
@@ -161,7 +189,7 @@ class Profile extends Component {
                                     name="phone_number"
                                     id="phones"
                                     value={phone_number}
-                                    onChange={this.handleChange}
+                                    onChange={this.onPhone}
                                  />
                               </div>
                            </div>
@@ -174,7 +202,7 @@ class Profile extends Component {
                                  name="address"
                                  id="address"
                                  value={address}
-                                 onChange={this.handleChange}
+                                 onChange={this.onAddress}
                               />
                            </div>
                         </section>
@@ -196,7 +224,7 @@ class Profile extends Component {
                                        name="displayname"
                                        id="displayname"
                                        value={displayname}
-                                       onChange={this.handleChange}
+                                       onChange={this.onDisplayname}
                                     />
                                  </div>
                                  <div className={styles.input__column}>
@@ -208,7 +236,7 @@ class Profile extends Component {
                                        name="firstname"
                                        id="firstname"
                                        value={firstname}
-                                       onChange={this.handleChange}
+                                       onChange={this.onFirstname}
                                     />
                                  </div>
                                  <div className={styles.input__column}>
@@ -220,7 +248,7 @@ class Profile extends Component {
                                        name="lastname"
                                        id="lastname"
                                        value={lastname}
-                                       onChange={this.handleChange}
+                                       onChange={this.onLastname}
                                     />
                                  </div>
                               </div>
@@ -233,19 +261,19 @@ class Profile extends Component {
                                     id="birthday"
                                     value={birthday}
                                     required
-                                    onChange={this.handleChange}
+                                    onChange={this.onBirthday}
                                  />
                                  <div className={styles.input__radio}>
                                     <input
                                        type="radio"
                                        name="gender"
-                                       id="male"
-                                       checked={
-                                          gender[0] === "MALE" ? true : false
-                                       }
+                                       id="MALE"
+                                       value={"MALE"}
+                                       onChange={this.onGender}
+                                       checked={gender === "MALE"}
                                     />
                                     <label
-                                       htmlFor="male"
+                                       htmlFor="MALE"
                                        className={styles.radio_label}
                                     >
                                        Male
@@ -255,13 +283,13 @@ class Profile extends Component {
                                     <input
                                        type="radio"
                                        name="gender"
-                                       id="female"
-                                       checked={
-                                          gender[0] === "FEMALE" ? true : false
-                                       }
+                                       id="FEMALE"
+                                       value={"FEMALE"}
+                                       onChange={this.onGender}
+                                       checked={gender === "FEMALE"}
                                     />
                                     <label
-                                       htmlFor="female"
+                                       htmlFor="FEMALE"
                                        className={styles.radio_label}
                                     >
                                        Female
@@ -273,8 +301,8 @@ class Profile extends Component {
                         <div className={styles.user__utility}>
                            <h3>Do you want to save the change?</h3>
                            <button
+                              onClick={this.submitEditprofile}
                               className={`${styles.btn_utility} ${styles.save}`}
-                              type="submit"
                            >
                               Save Change
                            </button>

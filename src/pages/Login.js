@@ -55,7 +55,7 @@ function Login() {
             password,
          })
          .then((res) => {
-            alert("Login success");
+            // alert("Login success");
             // console.log(res.data);
             const userData = {
                token: res.data.data.token,

@@ -6,10 +6,10 @@ import styles from "../css/Navbar.module.css";
 import icon_coffee from "../assets/image/main/logo_coffee.png";
 import icon_search from "../assets/image/main/icon_search.png";
 import icon_chat from "../assets/image/main/icon_message_button.png";
-import icon_profile from "../assets/image/main/img_userprofile.png";
+// import icon_profile from "../assets/image/main/img_userprofile.png";
 
 function Navbar() {
-   // const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
+   //    const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
    return (
       <>
          <nav className="nav d-flex justify-content-between align-items-center mx-auto px-4">
@@ -32,11 +32,11 @@ function Navbar() {
                <Link to="/product" className="nav-link">
                   Product
                </Link>
-               <Link to="/payment" className="nav-link">
-                  Your Cart
+               <Link to="#" className="nav-link">
+                  Order
                </Link>
-               <Link to="/history" className="nav-link">
-                  History
+               <Link to="#" className="nav-link">
+                  Dashboard
                </Link>
             </div>
             <div className={`${styles["right-nav"]} d-flex`}>
@@ -52,18 +52,18 @@ function Navbar() {
                >
                   <img src={icon_chat} alt="" widht="30" height="30" />
                </Link>
+               <Link
+                  to="#"
+                  className="nav-link "
+                  onClick={() => {
+                     localStorage.removeItem("userInfo");
+                     this.props.navigate("/");
+                  }}
+               >
+                  <span className="btn btn-secondary">Logout</span>
+               </Link>
 
                {/* logika jika admin profile tidak ada */}
-               {/* {userInfo.role === "admin" ? <h1>admin</h1> : <h1>user</h1>} */}
-               <Link to="/profile" className="nav-link">
-                  <img
-                     className={styles.img_userprofile}
-                     src={icon_profile}
-                     alt="img_userprofile"
-                     widht="30"
-                     height="30"
-                  />
-               </Link>
                <Link to="#" className="nav-link d-lg-none d-sm-block">
                   <span className={styles.burger}>
                      <i className="bi bi-list fs-4"></i>

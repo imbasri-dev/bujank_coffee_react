@@ -80,7 +80,7 @@ p {
     margin-left: 15px;
 }
 
-form {
+.form_bar {
     margin: 0 auto;
     height: 100%;
     display: flex;

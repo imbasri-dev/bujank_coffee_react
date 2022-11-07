@@ -21,7 +21,7 @@ function NavbarLogin() {
                      <span className="fs-6 fw-bold">Bujank Coffee</span>
                   </Link>
                   <div
-                     className={`${styles.nav__link} navbar-nav d-flex flex-row flex-lg-row d-none d-lg-flex  mx-auto`}
+                     className={`${styles.nav__link} navbar-nav d-flex flex-row flex-lg-row d-none d-md-flex d-lg-flex  mx-auto`}
                   >
                      <Link
                         to="/"

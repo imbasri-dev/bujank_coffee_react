@@ -5,22 +5,29 @@ import styles from "../css/Product.module.css";
 // import components
 import Navbar from "../components/Navbar";
 import NavbarLogin from "../components/NavbarLogin";
+import NavbarAdmin from "../components/NavbarAdmin";
 import Footer from "../components/FooterBootstrap";
 import CardProduct from "../components/CardProduct";
 import Promo from "../components/CardPromo";
 import withParams from "../helpers/withRouteParams";
+import withSearchParams from "../helpers/withSearchParams";
 // axios
 import axios from "axios";
 class Product extends Component {
    // variabel class
    state = {
       products: [],
+      userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
+      navLogin: <Navbar />,
+      navAdmin: <NavbarAdmin />,
+      navnotLogin: <NavbarLogin />,
       // url: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?page=1&limit=12`,
       favorite: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=favorite&page=1&limit=12`,
       food: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=foods&page=1&limit=12`,
       coffee: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=coffee&page=1&limit=12`,
       non_coffee: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=non_coffee&page=1&limit=12`,
       addons: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=add-on&page=1&limit=12`,
+      searchParams: {},
    };
    costToRP = (price) => {
       return (
@@ -29,6 +36,17 @@ class Product extends Component {
             .toFixed()
             .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
       );
+   };
+   navType = () => {
+      if (this.state.userInfo.token) {
+         if (this.state.userInfo.role === "user") {
+            return this.state.navLogin;
+         } else {
+            return this.state.navAdmin;
+         }
+      } else {
+         return this.state.navnotLogin;
+      }
    };
    // ketika website di reload
    componentDidMount() {
@@ -76,11 +94,12 @@ class Product extends Component {
 
    render() {
       title("Product");
-      const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
+      // const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
       return (
          <>
             {/* <!-- Start Navbar --> */}
-            {userInfo.token ? <Navbar /> : <NavbarLogin />}
+            {/* {userInfo.token ? <Navbar /> : <NavbarLogin />} */}
+            <this.navType />
             {/* <!-- End Navbar --> */}
             <main>
                <section
@@ -99,22 +118,100 @@ class Product extends Component {
                            className={`${styles["nav-product"]} d-flex flex-row justify-content-between`}
                         >
                            <div>
-                              <span onClick={this.onFavorite}>
+                              <span
+                                 onClick={() => {
+                                    this.onFavorite();
+                                    this.setState(
+                                       {
+                                          searchParams: { sort: "favorite" },
+                                       },
+                                       () => {
+                                          this.props.setSearchParams(
+                                             this.state.searchParams
+                                          );
+                                       }
+                                    );
+                                 }}
+                              >
                                  Favorite & Promo
                               </span>
                            </div>
                            <div>
-                              <span onClick={this.onCoffee}>Coffee</span>
+                              <span
+                                 onClick={() => {
+                                    this.onCoffee();
+                                    this.setState(
+                                       {
+                                          searchParams: { sort: "coffee" },
+                                       },
+                                       () => {
+                                          this.props.setSearchParams(
+                                             this.state.searchParams
+                                          );
+                                       }
+                                    );
+                                 }}
+                              >
+                                 Coffee
+                              </span>
                            </div>
                            <div>
-                              <span onClick={this.OnNonCoffee}>Non Coffee</span>
+                              <span
+                                 onClick={() => {
+                                    this.OnNonCoffee();
+                                    this.setState(
+                                       {
+                                          searchParams: { sort: "non_coffee" },
+                                       },
+                                       () => {
+                                          this.props.setSearchParams(
+                                             this.state.searchParams
+                                          );
+                                       }
+                                    );
+                                 }}
+                              >
+                                 Non Coffee
+                              </span>
                            </div>
                            <div>
                               {/* <Link to="">Foods</Link> */}
-                              <span onClick={this.onFood}>Food</span>
+                              <span
+                                 onClick={() => {
+                                    this.onFood();
+                                    this.setState(
+                                       {
+                                          searchParams: { sort: "food" },
+                                       },
+                                       () => {
+                                          this.props.setSearchParams(
+                                             this.state.searchParams
+                                          );
+                                       }
+                                    );
+                                 }}
+                              >
+                                 Food
+                              </span>
                            </div>
                            <div>
-                              <span onClick={this.onAddOn}>Add-on</span>
+                              <span
+                                 onClick={() => {
+                                    this.onAddOn();
+                                    this.setState(
+                                       {
+                                          searchParams: { sort: "addons" },
+                                       },
+                                       () => {
+                                          this.props.setSearchParams(
+                                             this.state.searchParams
+                                          );
+                                       }
+                                    );
+                                 }}
+                              >
+                                 Add-on
+                              </span>
                            </div>
                         </div>
 
@@ -122,8 +219,6 @@ class Product extends Component {
                            <div
                               className={`row ${styles["list-content"]} d-flex flex-wrap justify-content-start col-12 col-sm-12 col-md-12 `}
                            >
-                              {/* <CardProduct /> */}
-
                               {this.state.products.map((item, key) => (
                                  <CardProduct
                                     key={`${key}`}
@@ -147,4 +242,4 @@ class Product extends Component {
    }
 }
 
-export default withParams(Product);
+export default withSearchParams(withParams(Product));

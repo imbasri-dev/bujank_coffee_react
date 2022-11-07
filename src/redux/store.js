@@ -5,7 +5,6 @@ import {
 } from "redux";
 import logger from "redux-logger";
 import rpm from "redux-promise-middleware";
-
 import counterReducer from "./reducers/counter";
 import bookReducer from "./reducers/getProduct";
 
