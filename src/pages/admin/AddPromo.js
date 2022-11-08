@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // component
 import Footer from "../../components/FooterBootstrap";
-import styles from "../../css/admin/AddPromo.module.css";
+import styles from "../../css/admin/AddPromoAdmin.module.css";
 import addImage from "../../assets/image/main/img_dummy_uploadphoto.png";
 import title from "../../helpers/title";
 
