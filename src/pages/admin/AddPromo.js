@@ -4,6 +4,7 @@ import Footer from "../../components/FooterBootstrap";
 import styles from "../../css/admin/AddPromo.module.css";
 import addImage from "../../assets/image/main/img_dummy_uploadphoto.png";
 import title from "../../helpers/title";
+
 import Navbar from "../../components/Navbar";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import NavbarLogin from "../../components/NavbarLogin";
