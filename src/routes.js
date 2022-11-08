@@ -14,7 +14,7 @@ import EditProductDetail from "./pages/admin/EditProductDetail";
 import ProductAdmin from "./pages/admin/ProductAdmin";
 import AddProductId from "./pages/admin/AddProductId";
 import AddProduct from "./pages/admin/AddProduct";
-// import AddPromo from "./pages/admin/AddPromo";
+import AddPromo from "./pages/admin/AddPromo";
 // import component
 import Promo from "./components/CardPromo";
 import Toast from "./components/Toasts";
@@ -86,14 +86,14 @@ const router = createBrowserRouter([
          </PrivateElement>
       ),
    },
-   // {
-   //    path: "/add-promo",
-   //    element: (
-   //       <PrivateElement allowedRoles={["admin"]}>
-   //          <AddPromo />
-   //       </PrivateElement>
-   //    ),
-   // },
+   {
+      path: "/add-promo",
+      element: (
+         <PrivateElement allowedRoles={["admin"]}>
+            <AddPromo />
+         </PrivateElement>
+      ),
+   },
    {
       path: "/edit-promo",
       element: (

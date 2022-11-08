@@ -5,7 +5,7 @@ import Footer from "../components/FooterBootstrap";
 import NavbarLogin from "../components/NavbarLogin";
 // import Css
 import styles from "../css/Payment.module.css";
-
+import withNavigate from "../helpers/withNavigate";
 // import image
 import product_1 from "../assets/image/product/img_hazelnut.png";
 import product_2 from "../assets/image/product/img_chickenfire.png";
@@ -203,7 +203,11 @@ class Payment extends Component {
                                  </div>
                               </div>
                               <div className={styles["confirm-pay"]}>
-                                 <button>
+                                 <button
+                                    onClick={() => {
+                                       this.props.navigate("/history");
+                                    }}
+                                 >
                                     <span>Confirm and Pay</span>
                                  </button>
                               </div>
@@ -221,4 +225,4 @@ class Payment extends Component {
    }
 }
 
-export default Payment;
+export default withNavigate(Payment);
