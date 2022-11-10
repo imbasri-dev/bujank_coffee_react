@@ -122,6 +122,7 @@ p {
 }
 
 .forgot_password {
+    width: 200px;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;

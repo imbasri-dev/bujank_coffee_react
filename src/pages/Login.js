@@ -81,7 +81,7 @@ function Login() {
             setTimeout(() => {
                // Run code
                navigate("/");
-            }, 5000);
+            }, 500);
          })
          .catch((err) => {
             ErrorToastMessage();

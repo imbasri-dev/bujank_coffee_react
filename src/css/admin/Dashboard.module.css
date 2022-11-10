@@ -1,0 +1,26 @@
+.title {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 50px;
+    color: #6A4029;
+}
+
+.input__radio {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    margin: 0 50px;
+}
+
+.input__radio .radio_label {
+    color: #050302;
+    font-weight: 700;
+}
+
+.input__radio input[type="radio"] {
+    height: 30px;
+    width: 30px;
+    accent-color: #FFBA33;
+}

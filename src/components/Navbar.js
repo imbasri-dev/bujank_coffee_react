@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 // import css navbar
 import styles from "../css/Navbar.module.css";
 // import image
-import icon_coffee from "../assets/image/main/logo_coffee.png";
+import icon_coffee from "../assets/image/main/bujank_coffee.png";
 import icon_search from "../assets/image/main/icon_search.png";
 import icon_chat from "../assets/image/main/icon_message_button.png";
 // import icon_profile from "../assets/image/main/img_userprofile.png";

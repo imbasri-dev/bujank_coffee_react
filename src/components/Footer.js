@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../css/Footer.module.css";
 import { Link } from "react-router-dom";
-import icon_coffee from "../assets/image/main/logo_coffee.png";
+import icon_coffee from "../assets/image/main/bujank_coffee.png";
 import icon_ig from "../assets/image/main/icon_ig.png";
 import icon_fb from "../assets/image/main/icon_fb.png";
 import icon_tw from "../assets/image/main/icon_twitter.png";

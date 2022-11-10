@@ -15,6 +15,7 @@ import ProductAdmin from "./pages/admin/ProductAdmin";
 import AddProductId from "./pages/admin/AddProductId";
 import AddProduct from "./pages/admin/AddProduct";
 import AddPromo from "./pages/admin/AddPromo";
+import Dashboard from "./pages/admin/Dashboard";
 // import component
 import Promo from "./components/CardPromo";
 import Toast from "./components/Toasts";
@@ -115,6 +116,14 @@ const router = createBrowserRouter([
       element: (
          <PrivateElement allowedRoles={["admin"]}>
             <ProductAdmin />
+         </PrivateElement>
+      ),
+   },
+   {
+      path: "/dashboard",
+      element: (
+         <PrivateElement allowedRoles={["admin"]}>
+            <Dashboard />
          </PrivateElement>
       ),
    },

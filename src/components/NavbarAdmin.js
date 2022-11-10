@@ -8,8 +8,30 @@ import icon_search from "../assets/image/main/icon_search.png";
 import icon_chat from "../assets/image/main/icon_message_button.png";
 // import icon_profile from "../assets/image/main/img_userprofile.png";
 
+import Axios from "axios";
+
 function Navbar() {
-   //    const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
+   const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
+   console.log(userInfo);
+   const url = `${process.env.REACT_APP_BACKEND_HOST}/api/auth/`;
+   const onLogout = () => {
+      Axios.delete(url, {
+         headers: {
+            "x-access-token": userInfo.token,
+         },
+      })
+         .then((response) => {
+            // const data = response.data;
+            console.log(response);
+            setTimeout(() => {
+               window.location.reload();
+            }, 500);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   };
+
    return (
       <>
          <nav className="nav d-flex justify-content-between align-items-center mx-auto px-4">
@@ -57,7 +79,7 @@ function Navbar() {
                   onClick={() => {
                      // navigate("/");
                      localStorage.removeItem("userInfo");
-                     window.location("/");
+                     onLogout();
                   }}
                >
                   <span className="btn btn-secondary">Logout</span>

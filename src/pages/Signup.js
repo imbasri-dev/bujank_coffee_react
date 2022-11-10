@@ -70,7 +70,7 @@ class Signup extends Component {
             setTimeout(() => {
                // Run code
                this.props.navigate("/login");
-            }, 2000);
+            }, 500);
          })
          .catch((err) => {
             // console.log(err.response.data);
@@ -78,7 +78,7 @@ class Signup extends Component {
                position: toast.POSITION.TOP_RIGHT,
             });
          });
-      this.setState({ email: "", password: "", phone_number: "" });
+      // this.setState({ email: "", password: "", phone_number: "" });
    };
 
    handleToggle = () => {
@@ -130,7 +130,6 @@ class Signup extends Component {
                               name="email"
                               id="email"
                               placeholder="Enter your email address"
-                              required
                            />
                         </div>
                         <div className={`${styles.input} ${styles.withToggle}`}>
@@ -142,7 +141,6 @@ class Signup extends Component {
                               name="password"
                               id="password"
                               placeholder="Enter your password"
-                              required
                            />
                            {/* show password */}
                            <span
@@ -161,7 +159,6 @@ class Signup extends Component {
                               name="phone_number"
                               id="phone_number"
                               placeholder="Enter your phone number"
-                              required
                            />
                         </div>
 
@@ -169,7 +166,7 @@ class Signup extends Component {
                            className={`${styles.btn} ${styles.sign}`}
                            type="submit"
                         >
-                           Login
+                           Signup
                         </button>
                         <Link className={`${styles.btn} ${styles.google}`}>
                            <span>

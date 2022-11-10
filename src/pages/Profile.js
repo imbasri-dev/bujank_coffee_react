@@ -6,10 +6,8 @@ import NavbarLogin from "./../components/NavbarLogin";
 // helper
 import title from "./../helpers/title";
 import withNavigate from "../helpers/withNavigate";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 // import Router Link
 import { Link } from "react-router-dom";
 // css
@@ -23,6 +21,7 @@ class Profile extends Component {
    state = {
       userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
       url: `${process.env.REACT_APP_BACKEND_HOST}/api/profile`,
+      urlLogout: `${process.env.REACT_APP_BACKEND_HOST}/api/auth/`,
       email: "",
       phone_number: "",
       address: "",
@@ -31,11 +30,21 @@ class Profile extends Component {
       lastname: "",
       birthday: "",
       gender: "",
-      isEdit: true,
+      displaynameNotChange: "",
+      image: null,
+      displayImage: null,
+      isEditContact: true,
+      isEditDetail: true,
    };
+   // handleCancelClick = (e) => {
+   //    e.preventDefault();
+   // };
    componentDidMount() {
-      const { userInfo } = this.state;
       // console.log(userInfo.token); getToken
+      this.dataGet();
+   }
+   dataGet = () => {
+      const { userInfo } = this.state;
       Axios.get(this.state.url, {
          headers: {
             "x-access-token": userInfo.token,
@@ -47,6 +56,7 @@ class Profile extends Component {
             // console.log(response.msg);
             this.setState({
                displayname: data.displayname,
+               displaynameNotChange: data.displayname,
                email: data.email,
                phone_number: data.phone_number,
                address: data.address,
@@ -60,37 +70,23 @@ class Profile extends Component {
          .catch((err) => {
             console.log(err.message);
          });
-   }
-
-   // memasukan data kedatabase
-   submitEditprofile = async (event) => {
-      event.preventDefault();
-      // console.log(this.state.address);
-      try {
-         const { userInfo } = this.state;
-
-         Axios.patch(
-            this.state.url,
-            {
-               displayname: this.state.displayname,
-               firstname: this.state.firstname,
-               lastname: this.state.lastname,
-               address: this.state.address,
-               image: this.state.image,
-               birthday: this.state.birthday,
-               gender: this.state.gender,
-            },
-            {
-               headers: {
-                  "x-access-token": userInfo.token,
-               },
-            },
-            this.SavedToastMessage()
-         );
-      } catch (err) {
-         console.log(err);
-      }
    };
+   // memasukan data kedatabase
+   onLogout = () => {
+      Axios.delete(this.state.urlLogout, {
+         headers: {
+            "x-access-token": this.state.userInfo.token,
+         },
+      })
+         .then((response) => {
+            // const data = response.data;
+            console.log(response.data);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   };
+
    Reload = () => {
       this.props.navigate("/profile");
    };
@@ -104,7 +100,10 @@ class Profile extends Component {
          position: toast.POSITION.TOP_RIGHT,
       });
    };
-
+   inputImage = () => {
+      if (!this.state.image) return this.state.displayImage;
+      return URL.createObjectURL(this.state.image);
+   };
    // refactory handleInput
    // handleChange = (event) => {
    //    const { name, value } = event.target;
@@ -113,12 +112,12 @@ class Profile extends Component {
    //    });
    // };
 
-   onEmail = (e) => {
-      this.setState({ email: e.target.value });
-   };
-   onPhone = (e) => {
-      this.setState({ phone_number: e.target.value });
-   };
+   // onEmail = (e) => {
+   //    this.setState({ email: e.target.value });
+   // };
+   // onPhone = (e) => {
+   //    this.setState({ phone_number: e.target.value });
+   // };
    onAddress = (e) => {
       this.setState({ address: e.target.value });
    };
@@ -138,14 +137,51 @@ class Profile extends Component {
       this.setState({ gender: e.target.value });
    };
    onFile = (e) => {
-      this.setState({ image: e.target.value });
+      this.setState({ image: e.target.files[0] });
    };
-   onEdit = () => {
-      this.setState({ isEdit: false });
+   onEditContacts = () => {
+      this.setState({ isEditContact: false });
    };
+   onEditDetails = () => {
+      this.setState({ isEditDetail: false });
+   };
+
+   submitEditprofile = (event) => {
+      event.preventDefault();
+      // console.log(this.state.address);
+      let formData = new FormData();
+      if (this.state.image) formData.append("image", this.state.image);
+      if (this.state.address) formData.append("address", this.state.address);
+      if (this.state.displayname)
+         formData.append("displayname", this.state.displayname);
+      if (this.state.firstname)
+         formData.append("firstname", this.state.firstname);
+      if (this.state.lastname) formData.append("lastname", this.state.lastname);
+      if (this.state.gender) formData.append("gender", this.state.gender);
+      if (this.state.birthday) formData.append("birthday", this.state.birthday);
+      for (var pair of formData.entries()) {
+         console.log(pair[0] + " - " + pair[1]);
+      }
+      const { userInfo } = this.state;
+      Axios.patch(this.state.url, formData, {
+         headers: {
+            "x-access-token": userInfo.token,
+            "Content-Type": "multipart/form-data",
+         },
+      })
+         .then((response) => {
+            console.log(response.data);
+            console.log(response.data.msg);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   };
+
    render() {
       const {
          displayname,
+         displaynameNotChange,
          email,
          phone_number,
          address,
@@ -153,7 +189,6 @@ class Profile extends Component {
          lastname,
          birthday,
          gender,
-         image,
       } = this.state;
       // birthday.slice(0, 10).split("-").reverse().join("/"); debug
       // console.log(gender[0] === "MALE" ? "ya" : "no"); debug
@@ -166,23 +201,31 @@ class Profile extends Component {
             <main className={styles.container}>
                <section className={styles.content__bar}>
                   <h1>User Profile</h1>
-                  <div className={styles.content__profile}>
+                  <form className={styles.content__profile}>
                      <div className={styles.content__contact}>
                         <section className={styles.user__profile}>
                            <div className={styles.user__img}>
-                              <img src={image} alt="img_userprofile" />
+                              <img
+                                 src={this.state.image}
+                                 alt="img_userprofile"
+                              />
                               <label htmlFor="files" id="lable_file">
                                  <img src={icon_edit} alt="icon_edit" />
                               </label>
                               <input
+                                 id="files"
                                  type="file"
                                  name="file"
-                                 id="files"
-                                 onChange={this.onFile}
+                                 onChange={(e) => {
+                                    console.log(e.target.files[0]);
+                                    this.setState({
+                                       image: e.target.files[0],
+                                    });
+                                 }}
                                  className={styles.hidden}
                               />
                            </div>
-                           <h3>{displayname}</h3>
+                           <h3>{displaynameNotChange}</h3>
                            <p className={`${styles.user__email} py-3`}>
                               {email}
                            </p>
@@ -194,7 +237,7 @@ class Profile extends Component {
                               <img
                                  src={icon_edit}
                                  alt="icon_edit"
-                                 onClick={this.onEdit}
+                                 onClick={this.onEditContacts}
                               />
                            </div>
                            <div className={styles.input__contact}>
@@ -206,7 +249,7 @@ class Profile extends Component {
                                     id="email"
                                     // onChange={this.onEmail}
                                     value={email}
-                                    disabled={this.state.isEdit}
+                                    disabled
                                  />
                               </div>
                               <div className={styles.column}>
@@ -219,7 +262,7 @@ class Profile extends Component {
                                     id="phones"
                                     value={phone_number}
                                     // onChange={this.onPhone}
-                                    disabled={this.state.isEdit}
+                                    disabled
                                  />
                               </div>
                            </div>
@@ -233,7 +276,7 @@ class Profile extends Component {
                                  id="address"
                                  value={address}
                                  onChange={this.onAddress}
-                                 disabled={this.state.isEdit}
+                                 disabled={this.state.isEditContact}
                               />
                            </div>
                         </section>
@@ -245,7 +288,7 @@ class Profile extends Component {
                               <img
                                  src={icon_edit}
                                  alt="icon_change"
-                                 onClick={this.onEdit}
+                                 onClick={this.onEditDetails}
                               />
                            </div>
                            <div className={styles.user__name}>
@@ -260,7 +303,7 @@ class Profile extends Component {
                                        id="displayname"
                                        value={displayname}
                                        onChange={this.onDisplayname}
-                                       disabled={this.state.isEdit}
+                                       disabled={this.state.isEditDetail}
                                     />
                                  </div>
                                  <div className={styles.input__column}>
@@ -273,7 +316,7 @@ class Profile extends Component {
                                        id="firstname"
                                        value={firstname}
                                        onChange={this.onFirstname}
-                                       disabled={this.state.isEdit}
+                                       disabled={this.state.isEditDetail}
                                     />
                                  </div>
                                  <div className={styles.input__column}>
@@ -286,7 +329,7 @@ class Profile extends Component {
                                        id="lastname"
                                        value={lastname}
                                        onChange={this.onLastname}
-                                       disabled={this.state.isEdit}
+                                       disabled={this.state.isEditDetail}
                                     />
                                  </div>
                               </div>
@@ -294,7 +337,9 @@ class Profile extends Component {
                                  <label htmlFor="birthday">DD/MM/YYYY :</label>
                                  <input
                                     className={styles.birthday}
-                                    type={this.state.isEdit ? "text" : "date"}
+                                    type={
+                                       this.state.isEditDetail ? "text" : "date"
+                                    }
                                     name="birthday"
                                     id="birthday"
                                     placeholder={
@@ -306,8 +351,17 @@ class Profile extends Component {
                                                .reverse()
                                                .join("/")
                                     }
+                                    // value={
+                                    //    birthday == null
+                                    //       ? null
+                                    //       : birthday
+                                    //            .slice(0, 10)
+                                    //            .split("-")
+                                    //            .reverse()
+                                    //            .join("/")
+                                    // }
                                     onChange={this.onBirthday}
-                                    disabled={this.state.isEdit}
+                                    disabled={this.state.isEditDetail}
                                  />
                                  <div className={styles.input__radio}>
                                     <input
@@ -317,7 +371,7 @@ class Profile extends Component {
                                        value={"MALE"}
                                        onChange={this.onGender}
                                        checked={gender === "MALE"}
-                                       disabled={this.state.isEdit}
+                                       disabled={this.state.isEditDetail}
                                     />
                                     <label
                                        htmlFor="MALE"
@@ -334,7 +388,7 @@ class Profile extends Component {
                                        value={"FEMALE"}
                                        onChange={this.onGender}
                                        checked={gender === "FEMALE"}
-                                       disabled={this.state.isEdit}
+                                       disabled={this.state.isEditDetail}
                                     />
                                     <label
                                        htmlFor="FEMALE"
@@ -356,7 +410,9 @@ class Profile extends Component {
                            </button>
                            <button
                               className={`${styles.btn_utility} ${styles.cancel}`}
-                              type="reset"
+                              onClick={(e) => {
+                                 e.preventDefault();
+                              }}
                            >
                               Cancel
                            </button>
@@ -369,11 +425,12 @@ class Profile extends Component {
                            <span
                               onClick={() => {
                                  this.SuccessToastMessage();
+                                 this.onLogout();
                                  localStorage.removeItem("userInfo");
                                  setTimeout(() => {
                                     // Run code
                                     this.props.navigate("/");
-                                 }, 5000);
+                                 }, 1000);
                               }}
                               className={`${styles.btn_utility} ${styles.logout}`}
                            >
@@ -382,7 +439,7 @@ class Profile extends Component {
                            </span>
                         </div>
                      </div>
-                  </div>
+                  </form>
                </section>
             </main>
             <Footer />

@@ -1,5 +1,5 @@
 import React from "react";
-import icon_coffee from "../assets/image/main/logo_coffee.png";
+import icon_coffee from "../assets/image/main/bujank_coffee.png";
 // import icon_ig from "../assets/image/main/icon_ig.png";
 // import icon_fb from "../assets/image/main/icon_fb.png";
 // import icon_tw from "../assets/image/main/icon_twitter.png";
@@ -17,7 +17,13 @@ function Footer() {
             <aside className="col-12 col-md-4 col-lg-6 d-flex justify-content-start align-content-center text-start p-sm-2 p-2 p-lg-3 p-md-2 p-3">
                <div>
                   <span className="d-flex flex-row align-items-center ">
-                     <img src={icon_coffee} alt="icon_coffee" />
+                     <img
+                        src={icon_coffee}
+                        width={"50"}
+                        height={"50"}
+                        className="rounded-circle"
+                        alt="icon_coffee"
+                     />
                      <h4 className="fs-6 fw-bold ps-4 mb-md-0">
                         Bujank Coffee
                      </h4>
