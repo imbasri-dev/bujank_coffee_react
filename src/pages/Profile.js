@@ -24,13 +24,13 @@ class Profile extends Component {
       urlLogout: `${process.env.REACT_APP_BACKEND_HOST}/api/auth/`,
       email: "",
       phone_number: "",
-      address: "",
-      displayname: "",
-      firstname: "",
-      lastname: "",
-      birthday: "",
-      gender: "",
-      displaynameNotChange: "",
+      address: null,
+      displayname: null,
+      firstname: null,
+      lastname: null,
+      birthday: null,
+      gender: null,
+      displaynameNotChange: null,
       image: null,
       displayImage: null,
       isEditContact: true,
@@ -65,6 +65,7 @@ class Profile extends Component {
                birthday: data.birthday,
                gender: data.gender,
                image: data.image,
+               displayImage: data.image,
             });
          })
          .catch((err) => {
@@ -87,9 +88,6 @@ class Profile extends Component {
          });
    };
 
-   Reload = () => {
-      this.props.navigate("/profile");
-   };
    SuccessToastMessage = () => {
       toast.success("Logout Success!", {
          position: toast.POSITION.TOP_RIGHT,
@@ -100,9 +98,14 @@ class Profile extends Component {
          position: toast.POSITION.TOP_RIGHT,
       });
    };
-   inputImage = () => {
-      if (!this.state.image) return this.state.displayImage;
-      return URL.createObjectURL(this.state.image);
+   inputImage = (event) => {
+      // console.log(this.state.image);
+      if (event.target.files && event.target.files[0]) {
+         this.setState({
+            displayImage: URL.createObjectURL(event.target.files[0]),
+            image: event.target.files[0],
+         });
+      }
    };
    // refactory handleInput
    // handleChange = (event) => {
@@ -112,12 +115,6 @@ class Profile extends Component {
    //    });
    // };
 
-   // onEmail = (e) => {
-   //    this.setState({ email: e.target.value });
-   // };
-   // onPhone = (e) => {
-   //    this.setState({ phone_number: e.target.value });
-   // };
    onAddress = (e) => {
       this.setState({ address: e.target.value });
    };
@@ -148,21 +145,28 @@ class Profile extends Component {
 
    submitEditprofile = (event) => {
       event.preventDefault();
-      // console.log(this.state.address);
+      const {
+         userInfo,
+         image,
+         address,
+         displayname,
+         firstname,
+         lastname,
+         gender,
+         birthday,
+      } = this.state;
       let formData = new FormData();
-      if (this.state.image) formData.append("image", this.state.image);
-      if (this.state.address) formData.append("address", this.state.address);
-      if (this.state.displayname)
-         formData.append("displayname", this.state.displayname);
-      if (this.state.firstname)
-         formData.append("firstname", this.state.firstname);
-      if (this.state.lastname) formData.append("lastname", this.state.lastname);
-      if (this.state.gender) formData.append("gender", this.state.gender);
-      if (this.state.birthday) formData.append("birthday", this.state.birthday);
-      for (var pair of formData.entries()) {
-         console.log(pair[0] + " - " + pair[1]);
-      }
-      const { userInfo } = this.state;
+      if (image) formData.append("image", image);
+      if (address) formData.append("address", address);
+      if (displayname) formData.append("displayname", displayname);
+      if (firstname) formData.append("firstname", firstname);
+      if (lastname) formData.append("lastname", lastname);
+      if (gender) formData.append("gender", gender);
+      if (birthday) formData.append("birthday", birthday);
+      // debug
+      // for (var pair of formData.entries()) {
+      //    console.log(pair[0] + " - " + pair[1]);
+      // }
       Axios.patch(this.state.url, formData, {
          headers: {
             "x-access-token": userInfo.token,
@@ -170,11 +174,20 @@ class Profile extends Component {
          },
       })
          .then((response) => {
-            console.log(response.data);
             console.log(response.data.msg);
+            toast.success(response.data.msg, {
+               position: toast.POSITION.TOP_RIGHT,
+            });
+            setTimeout(() => {
+               // Run code
+               window.location.reload();
+            }, 1000);
          })
          .catch((err) => {
             console.log(err);
+            toast.err(err.message, {
+               position: toast.POSITION.TOP_RIGHT,
+            });
          });
    };
 
@@ -189,9 +202,11 @@ class Profile extends Component {
          lastname,
          birthday,
          gender,
+         displayImage,
       } = this.state;
-      // birthday.slice(0, 10).split("-").reverse().join("/"); debug
-      // console.log(gender[0] === "MALE" ? "ya" : "no"); debug
+      // console.log(
+      //    birthday.slice(0, 10).split("-").join("/").split("/").join("-")
+      // );
       title("Profile");
       return (
          <>
@@ -205,10 +220,7 @@ class Profile extends Component {
                      <div className={styles.content__contact}>
                         <section className={styles.user__profile}>
                            <div className={styles.user__img}>
-                              <img
-                                 src={this.state.image}
-                                 alt="img_userprofile"
-                              />
+                              <img src={displayImage} alt="img_userprofile" />
                               <label htmlFor="files" id="lable_file">
                                  <img src={icon_edit} alt="icon_edit" />
                               </label>
@@ -216,12 +228,13 @@ class Profile extends Component {
                                  id="files"
                                  type="file"
                                  name="file"
-                                 onChange={(e) => {
-                                    console.log(e.target.files[0]);
-                                    this.setState({
-                                       image: e.target.files[0],
-                                    });
-                                 }}
+                                 // onChange={(e) => {
+                                 //    console.log(e.target.files[0]);
+                                 //    this.setState({
+                                 //       image: e.target.files[0],
+                                 //    });
+                                 // }}
+                                 onChange={this.inputImage}
                                  className={styles.hidden}
                               />
                            </div>
@@ -338,28 +351,21 @@ class Profile extends Component {
                                  <input
                                     className={styles.birthday}
                                     type={
-                                       this.state.isEditDetail ? "text" : "date"
+                                       this.state.isEditDetail ? "date" : "date"
                                     }
                                     name="birthday"
                                     id="birthday"
-                                    placeholder={
+                                    placeholder={"Input Date"}
+                                    value={
                                        birthday == null
                                           ? null
                                           : birthday
                                                .slice(0, 10)
                                                .split("-")
-                                               .reverse()
                                                .join("/")
+                                               .split("/")
+                                               .join("-")
                                     }
-                                    // value={
-                                    //    birthday == null
-                                    //       ? null
-                                    //       : birthday
-                                    //            .slice(0, 10)
-                                    //            .split("-")
-                                    //            .reverse()
-                                    //            .join("/")
-                                    // }
                                     onChange={this.onBirthday}
                                     disabled={this.state.isEditDetail}
                                  />
@@ -412,6 +418,7 @@ class Profile extends Component {
                               className={`${styles.btn_utility} ${styles.cancel}`}
                               onClick={(e) => {
                                  e.preventDefault();
+                                 this.dataGet();
                               }}
                            >
                               Cancel

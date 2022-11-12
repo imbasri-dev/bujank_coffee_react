@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       ),
    },
    {
-      path: "/product-detail/:id",
+      path: "/product/detail/:id",
       element: (
          <PrivateElement allowedRoles={["user"]}>
             <ProductDetail />
