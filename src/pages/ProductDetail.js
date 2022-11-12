@@ -54,7 +54,7 @@ class ProductDetail extends Component {
       const { name, image, description, size, price } = this.state;
       // const params_id = this.params.id;
       // console.log(params_id);
-      title("Product-detail");
+      title(`Product ${name} size ${size}`);
       return (
          <>
             {userInfo.token ? <Navbar /> : <NavbarLogin />}
