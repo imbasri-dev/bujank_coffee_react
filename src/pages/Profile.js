@@ -12,6 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 // css
 import styles from "./../css/Profile.module.css";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 // assets
 import icon_edit from "./../assets/image/main/icon_editpencil.png";
 // import img_userprofile from "./../assets/image/main/img_userprofile.png";
@@ -35,10 +37,12 @@ class Profile extends Component {
       displayImage: null,
       isEditContact: true,
       isEditDetail: true,
+      show: false,
    };
    // handleCancelClick = (e) => {
    //    e.preventDefault();
    // };
+
    componentDidMount() {
       // console.log(userInfo.token); getToken
       this.dataGet();
@@ -190,7 +194,9 @@ class Profile extends Component {
             });
          });
    };
-
+   // modal
+   handleClose = () => this.setState({ show: false });
+   handleShow = () => this.setState({ show: true });
    render() {
       const {
          displayname,
@@ -203,6 +209,7 @@ class Profile extends Component {
          birthday,
          gender,
          displayImage,
+         show,
       } = this.state;
       // console.log(
       //    birthday.slice(0, 10).split("-").join("/").split("/").join("-")
@@ -431,15 +438,16 @@ class Profile extends Component {
                            </span>
                            <span
                               onClick={() => {
-                                 this.SuccessToastMessage();
-                                 this.onLogout();
-                                 localStorage.removeItem("userInfo");
-                                 setTimeout(() => {
-                                    // Run code
-                                    this.props.navigate("/");
-                                 }, 1000);
+                                 // this.SuccessToastMessage();
+                                 // this.onLogout();
+                                 this.handleShow();
+                                 // localStorage.removeItem("userInfo");
+                                 // setTimeout(() => {
+                                 //    // Run code
+                                 //    this.props.navigate("/");
+                                 // }, 1000);
                               }}
-                              className={`${styles.btn_utility} ${styles.logout}`}
+                              className={`${styles.btn_utility} ${styles.logout} `}
                            >
                               <p>Log out</p>
                               <i className="bi bi-chevron-right"></i>
@@ -448,7 +456,43 @@ class Profile extends Component {
                      </div>
                   </form>
                </section>
+               <Modal
+                  show={show}
+                  onHide={this.handleClose}
+                  backdrop="static"
+                  keyboard={false}
+               >
+                  <Modal.Header closeButton>
+                     <Modal.Title>confirmation😊</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>are you sure you want to log out?</Modal.Body>
+                  <Modal.Footer>
+                     <Button
+                        variant="secondary"
+                        className="fw-bold text-bg-secondary text-white"
+                        onClick={this.handleClose}
+                     >
+                        No ❌
+                     </Button>
+                     <Button
+                        variant="success"
+                        className="fw-bold text-bg-success text-white"
+                        onClick={() => {
+                           this.SuccessToastMessage();
+                           this.onLogout();
+                           localStorage.removeItem("userInfo");
+                           setTimeout(() => {
+                              // Run code
+                              this.props.navigate("/");
+                           }, 1000);
+                        }}
+                     >
+                        Yes ✅
+                     </Button>
+                  </Modal.Footer>
+               </Modal>
             </main>
+
             <Footer />
             <ToastContainer />
          </>
