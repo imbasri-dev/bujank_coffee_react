@@ -6,12 +6,16 @@ import {
 import logger from "redux-logger";
 import rpm from "redux-promise-middleware";
 import counterReducer from "./reducers/counter";
-import bookReducer from "./reducers/getProduct";
+import { getProfiles } from "./reducers/getProfile";
+import { getProduct, counter } from "./reducers/getProduct";
+// import bookReducer from "./reducers/getProduct";
 
 const middleware = applyMiddleware(rpm, logger);
 const reducers = combineReducers({
-   counter: counterReducer,
-   books: bookReducer,
+   counter: counter,
+   // books: bookReducer,
+   product: getProduct,
+   profile: getProfiles,
 });
 const store = createStore(reducers, middleware);
 

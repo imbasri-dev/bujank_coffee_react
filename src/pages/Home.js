@@ -34,14 +34,17 @@ import NavbarAdmin from "../components/NavbarAdmin";
 import { Link } from "react-router-dom";
 import title from "../helpers/title";
 // import redux
-import { connect } from "react-redux";
 import withLocation from "../helpers/withLocation";
+import { connect } from "react-redux";
+import axios from "axios";
+import { setProfiles } from "../redux/actions/getProfile";
 class Home extends Component {
    state = {
       userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
       navLogin: <Navbar />,
       navAdmin: <NavbarAdmin />,
       navnotLogin: <NavbarLogin />,
+      userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
    };
    navType = () => {
       if (this.state.userInfo.token) {
@@ -54,6 +57,30 @@ class Home extends Component {
          return this.state.navnotLogin;
       }
    };
+   // getdata profile ketika login untuk dijadikan redux
+   componentDidMount() {
+      const { userInfo } = this.state;
+
+      window.scrollTo(0, 0);
+      axios
+         .get(`${process.env.REACT_APP_BACKEND_HOST}/api/profile`, {
+            headers: {
+               "x-access-token": localStorage.getItem(userInfo.token),
+            },
+         })
+         .then((response) => {
+            this.props.setProfiles("address", response.data.result[0].address);
+            this.props.setProfiles(
+               "phone_number",
+               response.data.result[0].phone_number
+            );
+            this.props.setProfiles(
+               "displayname",
+               response.data.result[0].displayname
+            );
+         });
+   }
+
    render() {
       title("Bujank Coffee");
       // get token dari localStorage
@@ -499,9 +526,12 @@ class Home extends Component {
       );
    }
 }
-const mapStateToProps = (reduxState) => {
-   return {
-      reduxState,
-   };
+const mapDispatchToProps = {
+   setProfiles,
 };
-export default connect(mapStateToProps)(withLocation(Home));
+
+const mapStateToProps = (reduxState) => {
+   console.log(reduxState);
+   return {};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(withLocation(Home));

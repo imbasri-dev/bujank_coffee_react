@@ -9,6 +9,12 @@ import { Link } from "react-router-dom";
 import withParams from "../helpers/withRouteParams";
 import Axios from "axios";
 import CounterActions from "../redux/actions/counter";
+import {
+   setProduct,
+   counterUp,
+   counterDown,
+   counterReset,
+} from "../redux/actions/getProduct";
 
 class ProductDetail extends Component {
    state = {
@@ -35,25 +41,35 @@ class ProductDetail extends Component {
    componentDidMount() {
       Axios.get(this.state.url)
          .then((response) => {
+            const data = response.data.data[0];
             console.log(response.data.data[0].name);
+            this.props.setProduct("name", data.name);
+            this.props.setProduct("image", data.image);
             this.setState({
-               name: response.data.data[0].name,
-               image: response.data.data[0].image,
-               description: response.data.data[0].description,
-               size: response.data.data[0].size,
-               price: this.costToRP(response.data.data[0].price),
+               name: data.name,
+               image: data.image,
+               description: data.description,
+               size: data.size,
+               price: data.price,
             });
          })
          .catch((err) => {
             console.log(err);
          });
    }
-
+   totalPrice = () => {
+      const getPrice = this.state.price;
+      const sumProduct = this.props.counter;
+      return getPrice * sumProduct;
+   };
    render() {
       const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
       const { name, image, description, size, price } = this.state;
+      this.props.setProduct("price", this.totalPrice());
+
       // const params_id = this.params.id;
       // console.log(params_id);
+      console.log(price);
       title(`Product ${name} size ${size}`);
       return (
          <>
@@ -66,7 +82,7 @@ class ProductDetail extends Component {
                   >
                      <nav className="text-start">
                         <section className="text-start align-items-start fs-5">
-                           Favorite & Promo{" "}
+                           Favorite & Promo
                            <i className="bi bi-chevron-right"></i>
                            <span>
                               <Link className={styles.title_product}>
@@ -141,9 +157,7 @@ class ProductDetail extends Component {
                               <button
                                  type="button"
                                  onClick={() =>
-                                    this.props.dispatch(
-                                       CounterActions.counterDown()
-                                    )
+                                    this.props.counterDown("COUNTER_DOWN")
                                  }
                               >
                                  -
@@ -154,16 +168,16 @@ class ProductDetail extends Component {
                               <button
                                  type="button"
                                  onClick={() =>
-                                    this.props.dispatch(
-                                       CounterActions.counterUp()
-                                    )
+                                    this.props.counterUp("COUNTER_UP")
                                  }
                               >
                                  +
                               </button>
                            </span>
                         </div>
-                        <p className={styles.price}>{price}</p>
+                        <p className={styles.price}>
+                           {this.costToRP(this.totalPrice())}
+                        </p>
                      </section>
                      <span
                         className={`${styles.cart} mb-3 mb-sm-5 mb-md-5 mb-lg-3`}
@@ -218,7 +232,12 @@ class ProductDetail extends Component {
       );
    }
 }
-
+const mapDispatchToProps = {
+   setProduct,
+   counterUp,
+   counterDown,
+   counterReset,
+};
 const mapStateToProps = (reduxState) => {
    console.log(reduxState);
    return {
@@ -227,4 +246,7 @@ const mapStateToProps = (reduxState) => {
 };
 const productdetailParams = withParams(ProductDetail);
 
-export default connect(mapStateToProps)(productdetailParams);
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(productdetailParams);

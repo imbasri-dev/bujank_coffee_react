@@ -67,12 +67,13 @@ class Navbar extends Component {
                   </Link>
                </div>
                <div className={`${styles["right-nav"]} d-flex`}>
-                  <Link
+                  <span
                      to="#"
                      className="nav-link d-none d-sm-block d-md-none d-lg-block d-sm-none"
                   >
+                     <input className="p-1" type="text" placeholder="Search" />
                      <img src={icon_search} alt="" widht="30" height="30" />
-                  </Link>
+                  </span>
                   <Link
                      to="#"
                      className="nav-link d-none d-sm-block d-md-none d-lg-block d-sm-none"

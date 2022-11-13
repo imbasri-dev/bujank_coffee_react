@@ -13,6 +13,7 @@ import icon_card from "../assets/image/main/icon_card.png";
 import icon_cod from "../assets/image/main/icon_cod.png";
 import icon_bank from "../assets/image/main/icon_bank.png";
 import title from "../helpers/title";
+import { connect } from "react-redux";
 class Payment extends Component {
    state = {
       userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
@@ -41,37 +42,22 @@ class Payment extends Component {
                               {/* payment 1 */}
                               <div className={styles["payment-content"]}>
                                  <img
-                                    src={product_1}
-                                    alt="Payment1"
+                                    src={this.props.image}
+                                    alt="image_product"
                                     width="100px"
                                     height="100px"
                                  ></img>
                                  <div className={styles["payment-center"]}>
-                                    <p>Hazelnut Latte</p>
-                                    <p>x1</p>
+                                    <p>{this.props.name}</p>
+                                    <p>x{this.props.counter}</p>
                                     <p>Reguler</p>
                                  </div>
                                  <div className={styles["payment-idr"]}>
-                                    <p>IDR 24.0</p>
+                                    <p>{`IDR.${this.props.price}`}</p>
                                  </div>
                               </div>
                               {/* payment 2 */}
-                              <div className={styles["payment-content"]}>
-                                 <img
-                                    src={product_2}
-                                    alt="Payment2"
-                                    width="100px"
-                                    height="100px"
-                                 ></img>
-                                 <div className={styles["payment-center"]}>
-                                    <p>Chicken Fire Wings</p>
-                                    <p>x2</p>
-                                    <p></p>
-                                 </div>
-                                 <div className={styles["payment-idr"]}>
-                                    <p>IDR 24.0</p>
-                                 </div>
-                              </div>
+
                               {/* subtotal */}
                               <hr className="mx-5 my-4"></hr>
                               <div className={styles["total-payment"]}>
@@ -81,7 +67,7 @@ class Payment extends Component {
                                     <p>SHIPPING</p>
                                  </div>
                                  <div className={styles["total-payment-right"]}>
-                                    <p>IDR: 120.000</p>
+                                    <p>{`IDR.${this.props.price}`}</p>
                                     <p>IDR: 20.000</p>
                                     <p>IDR: 10.000</p>
                                  </div>
@@ -102,14 +88,15 @@ class Payment extends Component {
                                  </div>
                                  <div className={styles["box-address"]}>
                                     <h5>
-                                       <b className="me-1">Delivery</b>to
-                                       Iskandar Street
+                                       <span className="me-1 fw-bold">
+                                          Delivery To :
+                                       </span>
+                                       {this.props.displayname}
                                     </h5>
                                     <p className={styles["address-column"]}>
-                                       Km 5 refinery road oppsite republic road,
-                                       effurun, Jakarta
+                                       {this.props.address}
                                     </p>
-                                    <p>+62 81348287878</p>
+                                    <p>{this.props.phone_number}</p>
                                  </div>
                               </div>
                               <div className="col-12">
@@ -225,4 +212,16 @@ class Payment extends Component {
    }
 }
 
-export default withNavigate(Payment);
+const mapStateToProps = (reduxState) => {
+   console.log(reduxState);
+   return {
+      address: reduxState.profile.address,
+      phone_number: reduxState.profile.phone_number,
+      displayname: reduxState.profile.displayname,
+      counter: reduxState.counter.number,
+      image: reduxState.product.image,
+      price: reduxState.product.price,
+      name: reduxState.product.name,
+   };
+};
+export default connect(mapStateToProps)(withNavigate(Payment));

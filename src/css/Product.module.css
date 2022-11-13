@@ -171,6 +171,12 @@
     gap: 6%;
 }
 
+.form-select {
+    padding: 10px;
+    box-shadow: 0 1px 5px #4F5665;
+}
+
+
 
 @media only screen and (max-width: 600px) {
 

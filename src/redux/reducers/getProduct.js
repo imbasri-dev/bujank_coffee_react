@@ -1,40 +1,46 @@
-import actionStrings from "../actions/actionStrings";
+const intialStateProduct = {
+   name: "",
+   image: "",
+   price: 0,
+};
+const intialStateProductCounter = {
+   number: 1,
+};
+const getProduct = (prevState = intialStateProduct, action) => {
+   // kondisi untuk melakukan action
+   if (action.type === "SET_PRODUCT") {
+      return {
+         ...prevState,
+         [action.inputType]: action.value,
+      };
+   }
 
-const initialState = {
-   data: [],
-   isLoading: false,
-   isError: false,
-   err: null,
+   return prevState;
 };
 
-const bookReducer = (prevState = initialState, action) => {
+const counter = (prevState = intialStateProductCounter, action) => {
+   // lakukan pengondisian untuk masing masing action
    switch (action.type) {
-      case actionStrings.getBooks + actionStrings.pending:
+      case "COUNTER_UP":
+         //   const newCounter = prevState.number + 1;
          return {
             ...prevState,
-            isLoading: true,
-            isError: false,
+            number: prevState.number + 1,
          };
-      case actionStrings.getBooks + actionStrings.rejected:
-         const errorResponse = action.payload;
-         const errorMessage = errorResponse.data.msg;
+      case "COUNTER_DOWN":
+         //   const newCounter = prevState.number - 1;
          return {
             ...prevState,
-            isError: true,
-            isLoading: false,
-            err: errorMessage,
+            number: prevState.number === 1 ? 1 : prevState.number - 1,
          };
-      case actionStrings.getBooks + actionStrings.fulfilled:
-         const response = action.payload;
-         const result = response.data.result;
+      case "COUNTER_RESET":
          return {
             ...prevState,
-            isLoading: false,
-            data: result,
+            number: intialStateProductCounter.number,
          };
       default:
          return prevState;
    }
 };
 
-export default bookReducer;
+export { getProduct, counter };

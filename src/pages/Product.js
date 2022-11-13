@@ -27,7 +27,10 @@ class Product extends Component {
       coffee: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=coffee&page=1&limit=12`,
       non_coffee: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=non_coffee&page=1&limit=12`,
       addons: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=add-on&page=1&limit=12`,
+      urlData: `${process.env.REACT_APP_BACKEND_HOST}/api/product/`,
       searchParams: {},
+      currentPage: 1,
+      totalPage: 1,
    };
    costToRP = (price) => {
       return (
@@ -54,13 +57,49 @@ class Product extends Component {
          .get(this.state.favorite)
          .then((res) => {
             // this.setState({ products: res.data.result });
-            this.setState({ products: res.data.result.data }, () => {
-               // console.log(res.data.result);
-               // return res.data.result.data[0].image;
+            console.log(res.data.result.totalPage);
+            console.log(res.data.result);
+            this.setState({
+               products: res.data.result.data,
+            });
+            this.setState({
+               totalPage: res.data.result.totalPage,
             });
          })
          .catch((err) => console.log(err));
    }
+
+   getPrevProducts = () => {
+      this.state.currentPage = this.state.currentPage - 1;
+      // this.setState({
+      //    currentPage: this.state.currentPage - 1,
+      // });
+      axios
+         .get(`${this.state.urlData}?page=${this.state.currentPage}&limit=12`)
+         .then((res) =>
+            this.setState({
+               products: res.data.result.data,
+               debugPrev: console.log("Prev", res.data.result),
+            })
+         )
+         .catch((err) => console.log(err));
+   };
+   getNextProducts = () => {
+      this.state.currentPage = this.state.currentPage + 1;
+      // this.setState({
+      //    currentPage: this.state.currentPage + 1,
+      // });
+      axios
+         .get(`${this.state.urlData}?page=${this.state.currentPage}&limit=12`)
+         .then((res) =>
+            this.setState({
+               products: res.data.result.data,
+               debugNext: console.log("Next", res.data.result),
+            })
+         )
+         .catch((err) => console.log(err));
+   };
+
    onFavorite = () => {
       axios
          .get(this.state.favorite)
@@ -91,6 +130,14 @@ class Product extends Component {
          .then((res) => this.setState({ products: res.data.result.data }))
          .catch((err) => console.log(err));
    };
+   onSort = (e) => {
+      console.log(e.target.value);
+      axios
+         .get(`${this.state.urlData}?sort=${e.target.value}`)
+         .then((res) => this.setState({ products: res.data.result.data }))
+         .catch((err) => console.log(err));
+   };
+   // paginasi
 
    render() {
       title("Product");
@@ -175,7 +222,6 @@ class Product extends Component {
                               </span>
                            </div>
                            <div>
-                              {/* <Link to="">Foods</Link> */}
                               <span
                                  onClick={() => {
                                     this.onFood();
@@ -216,6 +262,19 @@ class Product extends Component {
                         </div>
 
                         <section className=" text-center row d-flex justify-content-center justify-content-md-center justify-content-lg-end flex-wrap justify-content-center align-items-center  ">
+                           <div className="text-end px-3 ">
+                              <select
+                                 class={`${styles["form-select"]} mt-5`}
+                                 aria-label="Default select example"
+                                 onChange={this.onSort}
+                              >
+                                 <option selected>sort</option>
+                                 <option value="expensive">expensive</option>
+                                 <option value="cheapest">cheapest</option>
+                                 <option value="newest">newest</option>
+                                 <option value="lastest">lastest</option>
+                              </select>
+                           </div>
                            <div
                               className={`row ${styles["list-content"]} d-flex flex-wrap justify-content-start col-12 col-sm-12 col-md-12 `}
                            >
@@ -233,6 +292,24 @@ class Product extends Component {
                            </div>
                         </section>
                      </aside>
+                     <div className="d-flex justify-content-between">
+                        <button
+                           className="btn btn-warning fs-5 fw-bold"
+                           onClick={this.getPrevProducts}
+                           disabled={this.state.currentPage === 1}
+                        >
+                           Prev
+                        </button>
+                        <button
+                           className="btn btn-warning fs-5 fw-bold"
+                           onClick={this.getNextProducts}
+                           disabled={
+                              this.state.totalPage === this.state.currentPage
+                           }
+                        >
+                           Next
+                        </button>
+                     </div>
                   </div>
                </section>
             </main>

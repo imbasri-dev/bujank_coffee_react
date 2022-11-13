@@ -1,15 +1,30 @@
-import actionStrings from "./actionStrings";
-import { getBook } from "../../https/books";
-
-const getBookAction = () => {
+export function setProduct(type, value) {
    return {
-      type: actionStrings.getBooks,
-      payload: getBook(),
+      type: "SET_PRODUCT",
+      inputType: type,
+      value: value,
    };
-};
+}
 
-const bookAction = {
-   getBookAction,
-};
+// export function counterUp(type, value) {
+//    return {
+//       type: "SET_PRODUCT",
+//       value: value,
+//    };
+// }
 
-export default bookAction;
+export function counterUp(type, value) {
+   return {
+      type: "COUNTER_UP",
+   };
+}
+export function counterDown(type, value) {
+   return {
+      type: "COUNTER_DOWN",
+   };
+}
+export function counterReset(type, value) {
+   return {
+      type: "COUNTER_RESET",
+   };
+}

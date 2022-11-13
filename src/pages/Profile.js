@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Footer from "./../components/FooterBootstrap";
 import Navbar from "./../components/Navbar";
 import NavbarLogin from "./../components/NavbarLogin";
+// import redux
+import { setProfiles } from "../redux/actions/getProfile";
 // helper
 import title from "./../helpers/title";
 import withNavigate from "../helpers/withNavigate";
@@ -19,6 +21,7 @@ import icon_edit from "./../assets/image/main/icon_editpencil.png";
 // import img_userprofile from "./../assets/image/main/img_userprofile.png";
 // axios
 import Axios from "axios";
+import { connect } from "react-redux";
 class Profile extends Component {
    state = {
       userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
@@ -46,6 +49,7 @@ class Profile extends Component {
    componentDidMount() {
       // console.log(userInfo.token); getToken
       this.dataGet();
+      window.scrollTo(0, 0);
    }
    dataGet = () => {
       const { userInfo } = this.state;
@@ -56,6 +60,10 @@ class Profile extends Component {
       })
          .then((response) => {
             const data = response.data.result[0];
+            // console.log(response.data.result[0].address);
+            this.props.setProfiles("address", data.address);
+            this.props.setProfiles("phone_number", data.phone_number);
+            this.props.setProfiles("displayname", data.displayname);
             // console.log(data);
             // console.log(response.msg);
             this.setState({
@@ -182,10 +190,8 @@ class Profile extends Component {
             toast.success(response.data.msg, {
                position: toast.POSITION.TOP_RIGHT,
             });
-            setTimeout(() => {
-               // Run code
-               window.location.reload();
-            }, 1000);
+            // Run code setelah async
+            window.location.reload();
          })
          .catch((err) => {
             console.log(err);
@@ -482,7 +488,6 @@ class Profile extends Component {
                            this.onLogout();
                            localStorage.removeItem("userInfo");
                            setTimeout(() => {
-                              // Run code
                               this.props.navigate("/");
                            }, 1000);
                         }}
@@ -500,4 +505,14 @@ class Profile extends Component {
    }
 }
 
-export default withNavigate(Profile);
+const mapDispatchToProps = {
+   setProfiles,
+};
+const mapStateToProps = (reduxState) => {
+   console.log(reduxState);
+   return {};
+};
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(withNavigate(Profile));
