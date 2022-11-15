@@ -52,6 +52,10 @@
     background: #FFBA33;
 }
 
+.hidden {
+    display: none;
+}
+
 .input_ {
     width: 360px;
     height: 83px;
@@ -63,12 +67,18 @@
     justify-content: center;
     padding: 30px;
     font-size: 1.5em;
+    text-decoration: none;
 }
 
+.disabled {
+    cursor: not-allowed;
+    background-color: #9F9F9F;
+}
 
 /* content right */
 .content_right {
     margin-top: 130px;
+    margin-bottom: 30px;
 }
 
 .input_right {
@@ -142,4 +152,5 @@
     /* buatkondisi click */
     background: rgba(186, 186, 186, 0.35);
     color: #4F5665;
+    cursor: not-allowed;
 }

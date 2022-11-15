@@ -18,7 +18,9 @@ export class AddPromo extends Component {
       navAdmin: <NavbarAdmin />,
       navnotLogin: <NavbarLogin />,
    };
-
+   componentDidMount() {
+      window.scroll(0, 0);
+   }
    navType = () => {
       if (this.state.userInfo.token) {
          if (this.state.userInfo.role === "user") {

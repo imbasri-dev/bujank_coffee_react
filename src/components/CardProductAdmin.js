@@ -10,7 +10,7 @@ function CardProduct(props) {
    return (
       <div
          onClick={() => {
-            navigate(`/add-product/${props.id}`);
+            navigate(`/product/edit/${props.id}`);
          }}
          className={`col-md-2 p-4 position-relative text-wrap ${styles["content-product"]}`}
       >

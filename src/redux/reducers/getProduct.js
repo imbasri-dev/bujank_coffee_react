@@ -1,7 +1,9 @@
 const intialStateProduct = {
    name: "",
    image: "",
+   size: "",
    price: 0,
+   totalPrice: 0,
 };
 const intialStateProductCounter = {
    number: 1,
@@ -14,7 +16,6 @@ const getProduct = (prevState = intialStateProduct, action) => {
          [action.inputType]: action.value,
       };
    }
-
    return prevState;
 };
 

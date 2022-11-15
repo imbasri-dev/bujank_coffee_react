@@ -4,7 +4,6 @@ import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 // footer
 import Footer from "../components/FooterBootstrap.js";
 // assets
-//
 import img_teamwork from "../assets/image/main/img_teamwork.png";
 import map from "../assets/image/main/img_map.png";
 import netflix from "../assets/image/main/img_netflix.png";
@@ -44,7 +43,6 @@ class Home extends Component {
       navLogin: <Navbar />,
       navAdmin: <NavbarAdmin />,
       navnotLogin: <NavbarLogin />,
-      userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
    };
    navType = () => {
       if (this.state.userInfo.token) {

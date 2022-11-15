@@ -13,12 +13,11 @@ import EditPromo from "./pages/admin/EditPromo";
 import EditProductDetail from "./pages/admin/EditProductDetail";
 import ProductAdmin from "./pages/admin/ProductAdmin";
 import AddProductId from "./pages/admin/AddProductId";
-import AddProduct from "./pages/admin/AddProduct";
-import AddPromo from "./pages/admin/AddPromo";
+import NewProduct from "./pages/admin/AddProduct";
+import NewPromo from "./pages/admin/AddPromo";
 import Dashboard from "./pages/admin/Dashboard";
 // import component
 import Promo from "./components/CardPromo";
-import Toast from "./components/Toasts";
 import NavLogin from "./components/NavbarLogin";
 import PrivateElement from "./components/PrivateElement";
 import NavbarAdmin from "../src/components/NavbarAdmin";
@@ -72,7 +71,7 @@ const router = createBrowserRouter([
       ),
    },
    {
-      path: "/add-product/:id",
+      path: "/product/edit/:id",
       element: (
          <PrivateElement allowedRoles={["admin"]}>
             <AddProductId />
@@ -80,18 +79,18 @@ const router = createBrowserRouter([
       ),
    },
    {
-      path: "/add-product",
+      path: "/product/new",
       element: (
          <PrivateElement allowedRoles={["admin"]}>
-            <AddProduct />
+            <NewProduct />
          </PrivateElement>
       ),
    },
    {
-      path: "/add-promo",
+      path: "/promo/new",
       element: (
          <PrivateElement allowedRoles={["admin"]}>
-            <AddPromo />
+            <NewPromo />
          </PrivateElement>
       ),
    },
@@ -127,7 +126,6 @@ const router = createBrowserRouter([
          </PrivateElement>
       ),
    },
-   { path: "/toast", element: <Toast msg="Hello" /> },
    { path: "/navbarlogin", element: <NavLogin /> },
    { path: "/counter", element: <Counter /> },
    { path: "/navbaradmin", element: <NavbarAdmin /> },

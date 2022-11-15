@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import styles from "../../css/admin/Dashboard.module.css";
 import NavbarAdmin from "../../components/NavbarAdmin";
+import Footer from "../../components/FooterBootstrap";
 import icon_persen from "../../assets/image/main/icon_dashboardpersen.png";
 import icon_userdashboard from "../../assets/image/main/img_userdashboard.png";
+import goals from "../../assets/image/main/img_goals.png";
+import goals_slide from "../../assets/image/main/img_goals_slide.png";
+import monthly_report from "../../assets/image/main/img_monthly_report.png";
 class Dashboard extends Component {
    render() {
       return (
@@ -51,28 +55,68 @@ class Dashboard extends Component {
                   </section>
                </section>
                <section className="row">
-                  <div className="col-8"></div>
-                  <div className="col-4">
-                     <section>
-                        <img
-                           src={icon_userdashboard}
-                           alt="icon_userdashboard"
-                        />
-                        <div>
-                           <h4>Cheryn Laurent</h4>
-                           <p>Keep up the good work and spread love!</p>
+                  <div className={`${styles.content_left} col-7`}>
+                     <img src={monthly_report} alt="report" />
+                     <button
+                        className={`${styles.btn_report} ${styles.download}`}
+                     >
+                        Download Report
+                     </button>
+                  </div>
+                  <div className={`${styles.content_right} col-4`}>
+                     <section
+                        className={`${styles.best_staff} d-flex flex-column p-3 justify-items-center align-items-center text-center mb-3`}
+                     >
+                        <div
+                           className={`${styles.header_card} d-flex justify-content-center align-items-center`}
+                        >
+                           <img
+                              src={icon_userdashboard}
+                              alt="icon_userdashboard"
+                              width={80}
+                              height={80}
+                              className={`rounded-circle`}
+                           />
+                           <div className="text-start p-3 mb-2">
+                              <h4 className="fw-bold">Cheryn Laurent</h4>
+                              <p>Keep up the good work and spread love!</p>
+                           </div>
                         </div>
                         <div>
-                           <h4>Best Staff of the Month</h4>
+                           <h4 className="fw-bold py-3">
+                              Best Staff of the Month
+                           </h4>
                            <img src={icon_persen} alt="icon_persen" />
-                           <p>
+                           <p className="text-muted fs-5 ">
                               Achieved 3.5M of total <br /> 5M 478 Customer
                            </p>
                         </div>
                      </section>
+                     <section
+                        className={`${styles.goals} text-center d-flex flex-column justify-content-center align-items-center mb-5`}
+                     >
+                        <h4 className="mb-3 fw-bold">Goals</h4>
+                        <p className="text-muted">
+                           Your goals is still on 76%. Keep up
+                           <br />
+                           the good work!
+                        </p>
+                        <img
+                           src={goals}
+                           width={200}
+                           height={200}
+                           alt="goals"
+                           className="my-3"
+                        />
+                        <img src={goals_slide} width={60} alt="goals_slide" />
+                     </section>
+                     <button className={`${styles.btn_report} ${styles.share}`}>
+                        Share Report
+                     </button>
                   </div>
                </section>
             </main>
+            <Footer />
          </>
       );
    }

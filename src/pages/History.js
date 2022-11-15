@@ -18,7 +18,6 @@ class History extends Component {
       price: "",
       status: "",
    };
-
    costToRP = (price) => {
       return (
          "IDR " +
@@ -29,13 +28,14 @@ class History extends Component {
    };
    componentDidMount() {
       const { userInfo } = this.state;
+      console.log(this.id);
       Axios.get(this.state.url, {
          headers: {
             "x-access-token": userInfo.token,
          },
       })
          .then((response) => {
-            // console.log(response.data.data.data);
+            // console.log(response.data.data.data[0].id);
             this.setState({ history: response.data.data.data }, () => {
                // return res.data.result.data[0].image;
             });
@@ -63,21 +63,14 @@ class History extends Component {
                </section>
                <section className="container col-lg my-5">
                   <article className="row justify-content-center">
-                     {/* <Card />
-                     <Card />
-                     <Card />
-                     <Card />
-                     <Card />
-                     <Card /> */}
-
                      {this.state.history.map((item, key) => (
                         <Card
                            name={item.name}
-                           price={this.costToRP(item.price)}
+                           price={this.costToRP(item.total)}
                            image_product={item.image}
                            status={item.status}
-                           key={`${key}`}
-                           // id={item.id}
+                           key={`${item.id}`}
+                           id={item.id}
                         />
                      ))}
                   </article>

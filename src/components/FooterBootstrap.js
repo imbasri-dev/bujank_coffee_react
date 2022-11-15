@@ -12,7 +12,7 @@ function Footer() {
    return (
       <footer>
          <section
-            className={`${styles.footTop} d-flex row flex-lg-row flex-md-row mx-auto justify-content-md-between align-content-center p-auto flex-sm-column-reverse flex-column-reverse mt-md-5 mt-0 p-3 mt-sm-5 mt-lg-3 pt-sm-5 pt-lg-5 pb-lg-4`}
+            className={`${styles.footTop} d-flex row flex-lg-row flex-md-row mx-auto justify-content-md-between align-content-center p-auto flex-sm-column-reverse flex-column-reverse p-3   pt-sm-5 pt-lg-5 pb-lg-4`}
          >
             <aside className="col-12 col-md-4 col-lg-6 d-flex justify-content-start align-content-center text-start p-sm-2 p-2 p-lg-3 p-md-2 p-3">
                <div>

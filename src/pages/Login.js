@@ -6,14 +6,13 @@ import Footer from "../components/FooterBootstrap";
 import title from "../helpers/title";
 // import assets image
 import img_signup from "../assets/image/main/img_signup.png";
-import icon_coffee from "../assets/image/main/logo_coffee.png";
+import icon_coffee from "../assets/image/main/bujank_coffee.png";
 import icon_google from "../assets/image/main/icon_googlesignup.png";
 // import helpers
 import withNavigate from "../helpers/withNavigate";
 import { useNavigate } from "react-router-dom";
 // import axios
 import axios from "axios";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

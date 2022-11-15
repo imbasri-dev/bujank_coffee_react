@@ -5,7 +5,7 @@ import styles from "../css/Signup.module.css";
 import Footer from "../components/FooterBootstrap";
 // import assets image
 import img_signup from "../assets/image/main/img_signup.png";
-import icon_coffee from "../assets/image/main/logo_coffee.png";
+import icon_coffee from "../assets/image/main/bujank_coffee.png";
 import icon_google from "../assets/image/main/icon_googlesignup.png";
 import title from "../helpers/title";
 import withNavigate from "../helpers/withNavigate";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import icon_coffee from "../assets/image/main/logo_coffee.png";
+import icon_coffee from "../assets/image/main/bujank_coffee.png";
 import hamburger from "../assets/image/main/icon_hamburger.png";
 
 import styles from "../css/NavbarLogin.module.css";
@@ -8,7 +8,7 @@ function NavbarLogin() {
    return (
       <>
          <header>
-            <nav className="navbar bg-light ">
+            <nav className="navbar bg-light px-3">
                <section className="container-fluid d-flex justify-content-between align-items-center">
                   <Link to="/" className="navbar-brand">
                      <img

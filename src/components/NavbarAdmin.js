@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import css navbar
 import styles from "../css/Navbar.module.css";
 // import image
-import icon_coffee from "../assets/image/main/logo_coffee.png";
+import icon_coffee from "../assets/image/main/bujank_coffee.png";
 import icon_search from "../assets/image/main/icon_search.png";
 import icon_chat from "../assets/image/main/icon_message_button.png";
 // import icon_profile from "../assets/image/main/img_userprofile.png";
@@ -12,7 +12,7 @@ import Axios from "axios";
 
 function Navbar() {
    const userInfo = JSON.parse(localStorage["userInfo"] || "{}");
-   console.log(userInfo);
+   // console.log(userInfo);
    const url = `${process.env.REACT_APP_BACKEND_HOST}/api/auth/`;
    const onLogout = () => {
       Axios.delete(url, {
@@ -51,13 +51,13 @@ function Navbar() {
                <Link to="/" className="nav-link">
                   Home
                </Link>
-               <Link to="/product-admin" className="nav-link">
+               <Link to="/product" className="nav-link">
                   Product
                </Link>
                <Link to="#" className="nav-link">
                   Order
                </Link>
-               <Link to="#" className="nav-link">
+               <Link to="/dashboard" className="nav-link">
                   Dashboard
                </Link>
             </div>

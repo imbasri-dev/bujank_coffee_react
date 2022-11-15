@@ -243,3 +243,14 @@
     border-radius: 50%;
     border: 2px solid #000000;
 }
+
+.edit {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.edit:hover {
+    color: orange;
+    text-transform: uppercase;
+    transform: scale(1.1);
+}

@@ -7,10 +7,12 @@ import Navbar from "../components/Navbar";
 import NavbarLogin from "../components/NavbarLogin";
 import NavbarAdmin from "../components/NavbarAdmin";
 import Footer from "../components/FooterBootstrap";
-import CardProduct from "../components/CardProduct";
 import Promo from "../components/CardPromo";
 import withParams from "../helpers/withRouteParams";
 import withSearchParams from "../helpers/withSearchParams";
+import withNavigate from "../helpers/withNavigate";
+import CardProduct from "../components/CardProduct";
+import cardAdmin from "../components/CardProductAdmin";
 // axios
 import axios from "axios";
 class Product extends Component {
@@ -23,10 +25,10 @@ class Product extends Component {
       navnotLogin: <NavbarLogin />,
       // url: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?page=1&limit=12`,
       favorite: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=favorite&page=1&limit=12`,
-      food: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=foods&page=1&limit=12`,
-      coffee: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=coffee&page=1&limit=12`,
-      non_coffee: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=non_coffee&page=1&limit=12`,
-      addons: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?sort=newest&category=add-on&page=1&limit=12`,
+      food: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?category=food&page=1&limit=12`,
+      coffee: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?category=coffee&page=1&limit=12`,
+      non_coffee: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?category=non_coffee&page=1&limit=12`,
+      addons: `${process.env.REACT_APP_BACKEND_HOST}/api/product/?category=addon&page=1&limit=12`,
       urlData: `${process.env.REACT_APP_BACKEND_HOST}/api/product/`,
       searchParams: {},
       currentPage: 1,
@@ -53,12 +55,13 @@ class Product extends Component {
    };
    // ketika website di reload
    componentDidMount() {
+      window.scrollTo(0, 0);
       axios
          .get(this.state.favorite)
          .then((res) => {
             // this.setState({ products: res.data.result });
-            console.log(res.data.result.totalPage);
-            console.log(res.data.result);
+            // console.log(res.data.result.totalPage);
+            // console.log(res.data.result);
             this.setState({
                products: res.data.result.data,
             });
@@ -133,7 +136,9 @@ class Product extends Component {
    onSort = (e) => {
       console.log(e.target.value);
       axios
-         .get(`${this.state.urlData}?sort=${e.target.value}`)
+         .get(
+            `${this.state.urlData}?sort=${e.target.value}&page=${this.state.currentPage}&limit=12`
+         )
          .then((res) => this.setState({ products: res.data.result.data }))
          .catch((err) => console.log(err));
    };
@@ -150,11 +155,24 @@ class Product extends Component {
             {/* <!-- End Navbar --> */}
             <main>
                <section
-                  className={`${styles.borderTop} container-fluid d-flex justify-content-around flex-row row flex-wrap w-100`}
+                  className={`${styles.borderTop} container-fluid d-flex justify-content-around flex-row row flex-wrap w-100 mx-0`}
                >
                   {/* promo bar */}
-                  <div className="col-lg-4 col-md-12 col-sm-12">
+                  <div
+                     className={`${styles.content_left} col-lg-4 col-md-12 col-sm-12 d-flex flex-column justify-content-between align-items-center`}
+                  >
                      <Promo />
+                     {/* kondisi render jika login admin dia akan muncul */}
+                     {this.state.userInfo.role === "admin" ? (
+                        <button
+                           className={`${styles.admin} ${styles.btn_promo}`}
+                           onClick={() => {
+                              this.props.navigate("/promo/new");
+                           }}
+                        >
+                           Add new product
+                        </button>
+                     ) : null}
                   </div>
                   <div className="col-lg-7 col-md-12 col-sm-12">
                      {/* Product */}
@@ -170,7 +188,9 @@ class Product extends Component {
                                     this.onFavorite();
                                     this.setState(
                                        {
-                                          searchParams: { sort: "favorite" },
+                                          searchParams: {
+                                             category: "favorite",
+                                          },
                                        },
                                        () => {
                                           this.props.setSearchParams(
@@ -189,7 +209,7 @@ class Product extends Component {
                                     this.onCoffee();
                                     this.setState(
                                        {
-                                          searchParams: { sort: "coffee" },
+                                          searchParams: { category: "coffee" },
                                        },
                                        () => {
                                           this.props.setSearchParams(
@@ -208,7 +228,9 @@ class Product extends Component {
                                     this.OnNonCoffee();
                                     this.setState(
                                        {
-                                          searchParams: { sort: "non_coffee" },
+                                          searchParams: {
+                                             category: "non_coffee",
+                                          },
                                        },
                                        () => {
                                           this.props.setSearchParams(
@@ -227,7 +249,7 @@ class Product extends Component {
                                     this.onFood();
                                     this.setState(
                                        {
-                                          searchParams: { sort: "food" },
+                                          searchParams: { category: "food" },
                                        },
                                        () => {
                                           this.props.setSearchParams(
@@ -246,7 +268,7 @@ class Product extends Component {
                                     this.onAddOn();
                                     this.setState(
                                        {
-                                          searchParams: { sort: "addons" },
+                                          searchParams: { category: "addons" },
                                        },
                                        () => {
                                           this.props.setSearchParams(
@@ -264,7 +286,7 @@ class Product extends Component {
                         <section className=" text-center row d-flex justify-content-center justify-content-md-center justify-content-lg-end flex-wrap justify-content-center align-items-center  ">
                            <div className="text-end px-3 ">
                               <select
-                                 class={`${styles["form-select"]} mt-5`}
+                                 className={`${styles["form-select"]} mt-5`}
                                  aria-label="Default select example"
                                  onChange={this.onSort}
                               >
@@ -292,7 +314,9 @@ class Product extends Component {
                            </div>
                         </section>
                      </aside>
-                     <div className="d-flex justify-content-between">
+                     <div
+                        className={`${styles.paginasi} d-flex justify-content-between mb-3`}
+                     >
                         <button
                            className="btn btn-warning fs-5 fw-bold"
                            onClick={this.getPrevProducts}
@@ -310,6 +334,19 @@ class Product extends Component {
                            Next
                         </button>
                      </div>
+                     <div>
+                        {/* kondisi render jika admin muncul button */}
+                        {this.state.userInfo.role === "admin" ? (
+                           <button
+                              className={`${styles.admin} ${styles.btn_product}`}
+                              onClick={() => {
+                                 this.props.navigate("/product/new");
+                              }}
+                           >
+                              Add new product
+                           </button>
+                        ) : null}
+                     </div>
                   </div>
                </section>
             </main>
@@ -319,4 +356,4 @@ class Product extends Component {
    }
 }
 
-export default withSearchParams(withParams(Product));
+export default withSearchParams(withParams(withNavigate(Product)));

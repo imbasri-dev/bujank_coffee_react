@@ -6,13 +6,6 @@ export function setProduct(type, value) {
    };
 }
 
-// export function counterUp(type, value) {
-//    return {
-//       type: "SET_PRODUCT",
-//       value: value,
-//    };
-// }
-
 export function counterUp(type, value) {
    return {
       type: "COUNTER_UP",

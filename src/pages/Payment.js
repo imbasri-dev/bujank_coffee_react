@@ -7,8 +7,8 @@ import NavbarLogin from "../components/NavbarLogin";
 import styles from "../css/Payment.module.css";
 import withNavigate from "../helpers/withNavigate";
 // import image
-import product_1 from "../assets/image/product/img_hazelnut.png";
-import product_2 from "../assets/image/product/img_chickenfire.png";
+// import product_1 from "../assets/image/product/img_hazelnut.png";
+// import product_2 from "../assets/image/product/img_chickenfire.png";
 import icon_card from "../assets/image/main/icon_card.png";
 import icon_cod from "../assets/image/main/icon_cod.png";
 import icon_bank from "../assets/image/main/icon_bank.png";
@@ -18,6 +18,16 @@ class Payment extends Component {
    state = {
       userInfo: JSON.parse(localStorage["userInfo"] || "{}"),
    };
+
+   costToRP = (price) => {
+      return (
+         "IDR " +
+         parseFloat(price)
+            .toFixed()
+            .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+      );
+   };
+
    render() {
       title("Payment");
       return (
@@ -31,7 +41,7 @@ class Payment extends Component {
                >
                   <div className={`container ${styles["title-payment"]}`}>
                      <h3>
-                        Checkout your <br></br> item now!
+                        Checkout your <br /> item now!
                      </h3>
                      <div className="row d-flex justify-content-between flex-sm-column flex-md-column  flex-lg-row  gap-5">
                         <div
@@ -39,9 +49,10 @@ class Payment extends Component {
                         >
                            <div className={styles["box-left"]}>
                               <p>Order Summary</p>
-                              {/* payment 1 */}
+                              {/* payment */}
                               <div className={styles["payment-content"]}>
                                  <img
+                                    className="img-thumbnail"
                                     src={this.props.image}
                                     alt="image_product"
                                     width="100px"
@@ -50,13 +61,22 @@ class Payment extends Component {
                                  <div className={styles["payment-center"]}>
                                     <p>{this.props.name}</p>
                                     <p>x{this.props.counter}</p>
-                                    <p>Reguler</p>
+                                    <p>
+                                       {this.props.size === "L"
+                                          ? "LARGE"
+                                          : this.props.size === "R"
+                                          ? "REGULER"
+                                          : this.props.size === "XL"
+                                          ? "EXTRA LARGE"
+                                          : null}
+                                    </p>
                                  </div>
                                  <div className={styles["payment-idr"]}>
-                                    <p>{`IDR.${this.props.price}`}</p>
+                                    <p>{`${this.costToRP(
+                                       this.props.price
+                                    )}`}</p>
                                  </div>
                               </div>
-                              {/* payment 2 */}
 
                               {/* subtotal */}
                               <hr className="mx-5 my-4"></hr>
@@ -67,7 +87,9 @@ class Payment extends Component {
                                     <p>SHIPPING</p>
                                  </div>
                                  <div className={styles["total-payment-right"]}>
-                                    <p>{`IDR.${this.props.price}`}</p>
+                                    <p>{`${this.costToRP(
+                                       this.props.totalPrice
+                                    )}`}</p>
                                     <p>IDR: 20.000</p>
                                     <p>IDR: 10.000</p>
                                  </div>
@@ -84,7 +106,14 @@ class Payment extends Component {
                               <div className="col-12">
                                  <div className={styles["address-detail"]}>
                                     <h2>Address</h2>
-                                    <p>edit</p>
+                                    <p
+                                       className={styles.edit}
+                                       onClick={() => {
+                                          this.props.navigate("/profile");
+                                       }}
+                                    >
+                                       edit
+                                    </p>
                                  </div>
                                  <div className={styles["box-address"]}>
                                     <h5>
@@ -219,9 +248,11 @@ const mapStateToProps = (reduxState) => {
       phone_number: reduxState.profile.phone_number,
       displayname: reduxState.profile.displayname,
       counter: reduxState.counter.number,
+      name: reduxState.product.name,
       image: reduxState.product.image,
       price: reduxState.product.price,
-      name: reduxState.product.name,
+      totalPrice: reduxState.product.totalPrice,
+      size: reduxState.product.size,
    };
 };
 export default connect(mapStateToProps)(withNavigate(Payment));
